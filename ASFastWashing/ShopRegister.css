@@ -1,0 +1,10 @@
+body,tr{
+    font-size:70px;
+    font-weight:bold;
+    font-family:Arial;
+}
+.mytd{
+    height:35px;
+    width:70px;
+    font-size:70px;
+}
