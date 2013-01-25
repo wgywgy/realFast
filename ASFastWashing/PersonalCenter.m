@@ -156,6 +156,7 @@
 {
     self.view.userInteractionEnabled = NO;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -336,7 +337,9 @@
     //BUG 边缘
     textField.superview.backgroundColor = [UIColor colorWithRed:250.0/255 green:249.0/255 blue:222.0/255 alpha:1];
 }
-//限制textfield长度
+/*
+ 函数功能：限制textfield长度
+*/
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     // return NO to not change text
@@ -369,7 +372,7 @@
 
 /*
  函数功能：点击View的其他区域隐藏软键盘。
- */
+*/
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
