@@ -296,7 +296,12 @@
     [_myTableView reloadData];
 }
 
-//获取本地收藏的商店
+/*****************************************
+ *函数名：
+ *参数：
+ *返回值：
+ *功能：获取本地收藏的商店
+ ****************************************/
 - (NSArray*)GetShopInfoFromLocal
 {
     NSUserDefaults * preferences = [NSUserDefaults standardUserDefaults];
