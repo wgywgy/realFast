@@ -165,7 +165,7 @@
 		03A9390B1693B5AC000BC8B2 /* 搜索栏@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03A938EA1693B5AC000BC8B2 /* 搜索栏@2x.png */; };
 		03A9390C1693B5AC000BC8B2 /* 搜索取消@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03A938EB1693B5AC000BC8B2 /* 搜索取消@2x.png */; };
 		03A9390D1693B5AC000BC8B2 /* 无评论.png in Resources */ = {isa = PBXBuildFile; fileRef = 03A938EC1693B5AC000BC8B2 /* 无评论.png */; };
-		03A9390E1693B5AC000BC8B2 /* 五角星@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03A938ED1693B5AC000BC8B2 /* 五角星@2x.png */; };
+		03A9390E1693B5AC000BC8B2 /* 五角星.png in Resources */ = {isa = PBXBuildFile; fileRef = 03A938ED1693B5AC000BC8B2 /* 五角星.png */; };
 		03A9390F1693B5AC000BC8B2 /* 最后背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 03A938EE1693B5AC000BC8B2 /* 最后背景.png */; };
 		03B4619C168C1B1C00B87D0C /* map-pins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B4619B168C1B1C00B87D0C /* map-pins@2x.png */; };
 		03C6377D1678661D001B82B2 /* myScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE111D3F167812E50097BF4B /* myScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -573,7 +573,7 @@
 		03A938EA1693B5AC000BC8B2 /* 搜索栏@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索栏@2x.png"; sourceTree = "<group>"; };
 		03A938EB1693B5AC000BC8B2 /* 搜索取消@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索取消@2x.png"; sourceTree = "<group>"; };
 		03A938EC1693B5AC000BC8B2 /* 无评论.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无评论.png"; sourceTree = "<group>"; };
-		03A938ED1693B5AC000BC8B2 /* 五角星@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "五角星@2x.png"; sourceTree = "<group>"; };
+		03A938ED1693B5AC000BC8B2 /* 五角星.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "五角星.png"; sourceTree = "<group>"; };
 		03A938EE1693B5AC000BC8B2 /* 最后背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "最后背景.png"; sourceTree = "<group>"; };
 		03B4619B168C1B1C00B87D0C /* map-pins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-pins@2x.png"; sourceTree = "<group>"; };
 		03DFD1D216757A1E00CED0B1 /* ASSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASSwitch.h; sourceTree = "<group>"; };
@@ -1238,7 +1238,7 @@
 				03A938EA1693B5AC000BC8B2 /* 搜索栏@2x.png */,
 				03A938EB1693B5AC000BC8B2 /* 搜索取消@2x.png */,
 				03A938EC1693B5AC000BC8B2 /* 无评论.png */,
-				03A938ED1693B5AC000BC8B2 /* 五角星@2x.png */,
+				03A938ED1693B5AC000BC8B2 /* 五角星.png */,
 				03A938EE1693B5AC000BC8B2 /* 最后背景.png */,
 			);
 			name = finalImage;
@@ -2001,7 +2001,7 @@
 				03A9390B1693B5AC000BC8B2 /* 搜索栏@2x.png in Resources */,
 				03A9390C1693B5AC000BC8B2 /* 搜索取消@2x.png in Resources */,
 				03A9390D1693B5AC000BC8B2 /* 无评论.png in Resources */,
-				03A9390E1693B5AC000BC8B2 /* 五角星@2x.png in Resources */,
+				03A9390E1693B5AC000BC8B2 /* 五角星.png in Resources */,
 				03A9390F1693B5AC000BC8B2 /* 最后背景.png in Resources */,
 				CE1FB9FF16940DBC008052F2 /* bgOfDot.png in Resources */,
 				EE13F55B16947D26007EBB4D /* ASShopRegisterController.xib in Resources */,
@@ -2014,11 +2014,9 @@
 				0389CA191696CC90005A22FF /* 暂无优惠信息.png in Resources */,
 				EE0A4C3916A6B50900B4652C /* ASAgreementController.xib in Resources */,
 				0356A0891699AA060058A558 /* toTop.png in Resources */,
-
 				9BFC740A16A702DC00C4606A /* ASSubCellViewController.xib in Resources */,
 				9B2236F016A85BFD009A8F7C /* ASModifyPersonalInformationViewController.xib in Resources */,
 				9B2236F216A85D3A009A8F7C /* tmall_bg_furley.png in Resources */,
-
 				03876E1916A6AE1A00589829 /* blackArrow.png in Resources */,
 				03876E1A16A6AE1A00589829 /* blackArrow@2x.png in Resources */,
 				03876E1B16A6AE1A00589829 /* blueArrow.png in Resources */,
@@ -2159,15 +2157,12 @@
 				0305AD52168AE03D00C6FA61 /* InfoMKPointAnnotation.m in Sources */,
 				EE13F55A16947D26007EBB4D /* ASShopRegisterController.m in Sources */,
 				CEA59FBF1695B80600D00D06 /* ASShopLocationController.m in Sources */,
-
 				9BFC740116A6FE2300C4606A /* FolderCoverView.m in Sources */,
 				9BFC740216A6FE2300C4606A /* UIFolderTableView.m in Sources */,
 				9BFC740316A6FE2300C4606A /* UIView+screenshot.m in Sources */,
 				9BFC740916A702DC00C4606A /* ASSubCellViewController.m in Sources */,
-
 				EE0A4C3816A6B50900B4652C /* ASAgreementController.m in Sources */,
 				038D889A16A8E9DC006253C2 /* EGORefreshTableFooterView.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

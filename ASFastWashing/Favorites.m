@@ -90,7 +90,7 @@
     UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:path]];
     imageView.frame = CGRectMake( 60 , ((rect_screen.size.height - 64) / 2 ) - 130, 200, 200);
     
-    UILabel * lable = [[UILabel alloc]initWithFrame:CGRectMake(70 ,((rect_screen.size.height - 64) / 2 ) + 100 , 200 , 40)];
+    UILabel * lable = [[UILabel alloc]initWithFrame:CGRectMake(90,((rect_screen.size.height - 64) / 2 ) + 100 , 200 , 40)];
     lable.text = @"您收藏夹为空";
     [lable setFont:[UIFont systemFontOfSize:22]];
     [lable setTextColor:[UIColor grayColor]];
