@@ -35,22 +35,24 @@
     
     if (rect_screen.size.height == 480) {
         [self.textLabel setFrame:
-         CGRectMake(bounds.size.height * 1.2 - 6, 4,
+         CGRectMake(bounds.size.height * 1.2 - 5, 4,
                     268, bounds.size.height / 2)];
         self.detailTextLabel.font = [UIFont systemFontOfSize:12];
         [self.detailTextLabel setFrame:
          CGRectMake(266, bounds.size.height / 2 - 12,
                     44, 24)];
-        [address setFrame:CGRectMake(bounds.size.height * 1.2 - 6 , bounds.size.height / 2 , 272, 32)];
+        [address setFrame:CGRectMake(bounds.size.height * 1.2 - 5, bounds.size.height / 2 ,
+                                     272, 32)];
     } else {
         [self.textLabel setFrame:
-         CGRectMake(bounds.size.height * 1.2 - 6 , 6,
+         CGRectMake(bounds.size.height * 1.2 - 5, 6,
                     268, bounds.size.height / 2)];
         self.detailTextLabel.font = [UIFont systemFontOfSize:12];
         [self.detailTextLabel setFrame:
          CGRectMake(266, bounds.size.height / 2 - 12,
                     44, 24)];
-        [address setFrame:CGRectMake(bounds.size.height * 1.2 - 6 , bounds.size.height / 2 + 4, 272, 32)];
+        [address setFrame:CGRectMake(bounds.size.height * 1.2 - 5, bounds.size.height / 2 + 4,
+                                     272, 32)];
     }
     
     address.textColor = [UIColor darkGrayColor];

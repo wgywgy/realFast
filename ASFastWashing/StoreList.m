@@ -682,6 +682,7 @@
         if([aView isKindOfClass:[UIButton class]]){
             UIButton *btn = (UIButton *)aView;
             [btn setTitle:@"取消"  forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor darkGrayColor]forState:UIControlStateNormal];
             
             break;
         }
