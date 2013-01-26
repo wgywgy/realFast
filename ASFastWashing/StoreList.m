@@ -1159,10 +1159,11 @@
 //        else {
             if (scrollView.contentOffset.y > tmpY)
             {
-                self.wantsFullScreenLayout = YES;
                 navIsHidden = YES;
                 //搜索
                 if (isSearchView == YES) {
+                    
+                    self.wantsFullScreenLayout = NO;
                     [self.mySearchBar resignFirstResponder];
 
                     for (UIView *possibleButton in self.mySearchBar.subviews)
@@ -1184,6 +1185,7 @@
                     
                 } else {
                     //隐藏导航栏
+                    self.wantsFullScreenLayout = YES;
                     [self.navigationController setNavigationBarHidden:YES animated:YES];
                     
                     left.transform = CGAffineTransformIdentity;
@@ -1227,6 +1229,7 @@
                     
                     //                self.mySearchBar.hidden = YES;
 
+                    self.wantsFullScreenLayout = NO;
                     left.hidden = YES;
                     mid.hidden = YES;
                     right.hidden = YES;
@@ -1236,7 +1239,8 @@
                     
                 } else {
                     [self.navigationController setNavigationBarHidden:NO animated:YES];
-                    
+                    self.wantsFullScreenLayout = NO;
+
                     left.transform = CGAffineTransformIdentity;
                     [UIView beginAnimations:@"leftShow"context:left];
                     [UIView setAnimationDelegate:self];

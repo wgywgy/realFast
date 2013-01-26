@@ -93,7 +93,7 @@ const CGFloat kASRevealSidebarFlickVelocity = 1000.0f;
 		
 		self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 		
-		_sidebarView = [[UIView alloc] initWithFrame:self.view.bounds];
+		_sidebarView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y + 20, self.view.bounds.size.width, self.view.bounds.size.height)];
 		_sidebarView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 		_sidebarView.backgroundColor = [UIColor clearColor];
 		[self.view addSubview:_sidebarView];
