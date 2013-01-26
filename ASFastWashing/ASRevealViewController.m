@@ -86,6 +86,7 @@ const CGFloat kASRevealSidebarFlickVelocity = 1000.0f;
 #pragma mark Memory Management
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.wantsFullScreenLayout = YES;
 		self.sidebarShowing = NO;
 		_tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidebar)];
 		_tapRecog.cancelsTouchesInView = YES;
