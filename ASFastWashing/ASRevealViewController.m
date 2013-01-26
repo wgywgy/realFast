@@ -100,13 +100,15 @@ const CGFloat kASRevealSidebarFlickVelocity = 1000.0f;
 		
 		_contentView = [[UIView alloc] initWithFrame:self.view.bounds];
 		_contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-		_contentView.backgroundColor = [UIColor clearColor];
+        _contentView.backgroundColor =
+        [UIColor colorWithRed:(38.0f/255.0f) green:(44.0f/255.0f) blue:(58.0f/255.0f) alpha:1.0f];
+//		_contentView.backgroundColor = [UIColor clearColor];
 		_contentView.layer.masksToBounds = NO;
 //        _contentView.layer.cornerRadius = 8.0f;
         _contentView.layer.shadowColor = [UIColor blackColor].CGColor;
-		_contentView.layer.shadowOffset = CGSizeMake(-3.0f, 0.0f);
-		_contentView.layer.shadowOpacity = 1.0f;
-		_contentView.layer.shadowRadius = 2.5f;
+		_contentView.layer.shadowOffset = CGSizeMake(-8.0f, 16.0f);
+		_contentView.layer.shadowOpacity = 0.6f;
+		_contentView.layer.shadowRadius = 4.0f;
         self.view.layer.masksToBounds = YES;
 //        self.view.layer.cornerRadius = 8.0f;
 		_contentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:_contentView.bounds].CGPath;

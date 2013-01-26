@@ -1217,7 +1217,7 @@
 //                    right.hidden = YES;
 //                    mySearchBtn.hidden = YES;
                     
-                    [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height - 20)];
+                    [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height)];
                 }
 //                toTop.hidden = NO;
             } else {
@@ -1271,7 +1271,7 @@
                     right.hidden = NO;
                     mySearchBtn.hidden = NO;
                     
-                    [self.myTableView setFrame:CGRectMake(0, 36, 320, rect_screen.size.height - 36 - 44 - 20)];
+                    [self.myTableView setFrame:CGRectMake(0, 36, 320, rect_screen.size.height - 36 - 44)];
                 }
             }
         }
