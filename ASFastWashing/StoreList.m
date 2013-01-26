@@ -507,7 +507,8 @@
 	}
     
     self.navigationController.navigationBarHidden = NO;
-    
+//    self.wantsFullScreenLayout = YES;   //视图设置为全屏
+ 
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     UIImage *backgroundImage = [UIImage imageNamed:@"导航栏.png"];
     if (version >= 5.0) {
@@ -1158,6 +1159,7 @@
 //        else {
             if (scrollView.contentOffset.y > tmpY)
             {
+                self.wantsFullScreenLayout = YES;
                 navIsHidden = YES;
                 //搜索
                 if (isSearchView == YES) {
@@ -1267,7 +1269,6 @@
                     
                     [self.myTableView setFrame:CGRectMake(0, 36, 320, rect_screen.size.height - 36 - 44 - 20)];
                 }
-//                toTop.hidden = YES;
             }
         }
 //        second = ~second;

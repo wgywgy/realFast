@@ -90,7 +90,7 @@
 	self.view.frame = CGRectMake(0.0f, 0.0f, 320.0f, CGRectGetHeight(self.view.bounds));
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.view.layer.masksToBounds = YES;
-    self.view.layer.cornerRadius = 8.0f;
+//    self.view.layer.cornerRadius = 8.0f;
 	_menuTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, CGRectGetHeight(self.view.bounds) - 44.0f)
 												  style:UITableViewStylePlain];
 	_menuTableView.delegate = self;
@@ -99,7 +99,7 @@
 	_menuTableView.backgroundColor = [UIColor clearColor];
 	_menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _menuTableView.layer.masksToBounds = YES;
-    _menuTableView.layer.cornerRadius = 8.0f;
+//    _menuTableView.layer.cornerRadius = 8.0f;
 	[self.view addSubview:_menuTableView];
     
     //添加“注销登录”按钮
