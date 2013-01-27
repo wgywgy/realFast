@@ -344,6 +344,13 @@
 
     self.mySearchBar.hidden = NO;
     self.mySearchBar.text = @"";
+    
+    //改变背景
+//    UIImage *syncBgImg = [UIImage imageNamed:@""];
+//    UIColor *color = [[UIColor alloc] initWithPatternImage:syncBgImg];
+    UIColor * color = [UIColor darkGrayColor];
+    [self.myTableView setBackgroundColor:color];
+    
     isSearchView = YES;
     
     //清空数据
@@ -418,6 +425,7 @@
     [self.mySearchBar resignFirstResponder];
     [self resetSearch];
     
+    [self.myTableView setBackgroundColor:[UIColor darkGrayColor]];
     [self.myTableView setContentOffset:CGPointMake(0, 0) animated:NO];
 }
 
@@ -507,7 +515,11 @@
 	}
     
     self.navigationController.navigationBarHidden = NO;
-//    self.wantsFullScreenLayout = YES;   //视图设置为全屏
+    self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    #warning need to change a photo
+//    [self.myTableView setBackgroundColor:[UIColor blackColor]];
+    //平铺背景图片
  
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     UIImage *backgroundImage = [UIImage imageNamed:@"导航栏.png"];
@@ -582,6 +594,8 @@
     UIImage * joinImg = [UIImage imageNamed:@"test.jpg"];
     [join setBackgroundImage:joinImg forState:UIControlStateNormal];
     
+    join.layer.shadowPath = [UIBezierPath bezierPathWithRect:join.bounds].CGPath;
+
     join.layer.shadowOffset = CGSizeMake(0, 2);
     join.layer.shadowOpacity = 0.62;
     join.layer.shadowRadius = 4;
@@ -672,6 +686,12 @@
     }
     
     //增加搜索栏阴影
+    self.mySearchBar.layer.shadowPath = [UIBezierPath bezierPathWithRect:
+                                         CGRectMake(self.mySearchBar.bounds.origin.x - 4, self.mySearchBar.bounds.origin.y,
+                                                    self.mySearchBar.bounds.size.width + 8, self.mySearchBar.bounds.size.height)].CGPath;
+//                                         self.mySearchBar.bounds].CGPath;
+
+
     self.mySearchBar.layer.shadowOffset = CGSizeMake(0, 2);
     self.mySearchBar.layer.shadowOpacity = 0.62;
     self.mySearchBar.layer.shadowRadius = 4;
@@ -1099,6 +1119,9 @@
         }
 
         [self.myTableView reloadData];
+    
+        //设置列表背景颜色
+        [self.myTableView setBackgroundColor:[UIColor darkGrayColor]];
 }
 
 /*

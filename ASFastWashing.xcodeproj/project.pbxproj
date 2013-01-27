@@ -95,7 +95,6 @@
 		033ACDC3166DD666007FF083 /* ROImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 033ACDC0166DD666007FF083 /* ROImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		033ACDC9166DD68C007FF083 /* ROPublishPhotoDialogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 033ACDC6166DD68C007FF083 /* ROPublishPhotoDialogModel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		033ACDCA166DD68C007FF083 /* ROPublishPhotoInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 033ACDC8166DD68C007FF083 /* ROPublishPhotoInternal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0356A0891699AA060058A558 /* toTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 0356A0881699AA060058A558 /* toTop.png */; };
 		035D698716886A31008B2CD6 /* DropDownList.m in Sources */ = {isa = PBXBuildFile; fileRef = 035D698616886A31008B2CD6 /* DropDownList.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		035D698E1688AD2A008B2CD6 /* listBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 035D698D1688AD2A008B2CD6 /* listBg.png */; };
 		035D69901688AD39008B2CD6 /* mapButtonCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 035D698F1688AD39008B2CD6 /* mapButtonCenter.png */; };
@@ -490,7 +489,6 @@
 		033ACDC6166DD68C007FF083 /* ROPublishPhotoDialogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ROPublishPhotoDialogModel.m; sourceTree = "<group>"; };
 		033ACDC7166DD68C007FF083 /* ROPublishPhotoInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ROPublishPhotoInternal.h; sourceTree = "<group>"; };
 		033ACDC8166DD68C007FF083 /* ROPublishPhotoInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ROPublishPhotoInternal.m; sourceTree = "<group>"; };
-		0356A0881699AA060058A558 /* toTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toTop.png; sourceTree = "<group>"; };
 		035D698516886A31008B2CD6 /* DropDownList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownList.h; sourceTree = "<group>"; };
 		035D698616886A31008B2CD6 /* DropDownList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownList.m; sourceTree = "<group>"; };
 		035D698D1688AD2A008B2CD6 /* listBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listBg.png; sourceTree = "<group>"; };
@@ -1366,7 +1364,6 @@
 			isa = PBXGroup;
 			children = (
 				03876E0D16A6AE0600589829 /* RefreshTable */,
-				0356A0881699AA060058A558 /* toTop.png */,
 				037FC0EB1679D34600F6A3CE /* glass.png */,
 				03620CF01682D3CB009C2F1A /* button_down.png */,
 				18123FC11666B93D00E8A33E /* test.jpg */,
@@ -2005,7 +2002,6 @@
 				0389CA131696C602005A22FF /* 登陆按下.png in Resources */,
 				0389CA191696CC90005A22FF /* 暂无优惠信息.png in Resources */,
 				EE0A4C3916A6B50900B4652C /* ASAgreementController.xib in Resources */,
-				0356A0891699AA060058A558 /* toTop.png in Resources */,
 				9BFC740A16A702DC00C4606A /* ASSubCellViewController.xib in Resources */,
 				9B2236F016A85BFD009A8F7C /* ASModifyPersonalInformationViewController.xib in Resources */,
 				9B2236F216A85D3A009A8F7C /* tmall_bg_furley.png in Resources */,

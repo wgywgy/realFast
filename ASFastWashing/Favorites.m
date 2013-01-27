@@ -77,6 +77,9 @@
     [leftBarButton release];
     [leftButton release];
     
+    //dejavu: tableview无分割线
+    self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     //隐藏搜索栏
     CGRect bounds = [self.myTableView bounds];
     bounds.origin.y += self.mySearchBar.bounds.size.height;
