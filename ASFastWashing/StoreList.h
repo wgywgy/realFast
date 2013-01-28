@@ -26,7 +26,8 @@ typedef void (^RevealBlock4)();
                     ASRequestDelegate,
                     EGORefreshTableFooterDelegate,
                     CLLocationManagerDelegate,
-                    MKMapViewDelegate>
+                    MKMapViewDelegate,
+                    UIGestureRecognizerDelegate>
 {
     EGORefreshTableFooterView *_refreshHeaderView;
     BOOL _reloading;
@@ -89,6 +90,8 @@ typedef void (^RevealBlock4)();
     
     NSString * addr;
 
+    CGPoint beginOffset;
+    CGFloat currentOffset;
 @private
     ASRequest * request;
 	RevealBlock4 _revealBlock;
