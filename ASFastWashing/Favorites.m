@@ -173,6 +173,7 @@
         [rightButton release];
         [right release];
         
+        
         UIButton * left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 66, 35)];
         [left setTitle:@"删除全部" forState:UIControlStateNormal];
         left.titleLabel.font = [UIFont systemFontOfSize: 13.0];
