@@ -348,8 +348,8 @@
     //改变背景
 //    UIImage *syncBgImg = [UIImage imageNamed:@""];
 //    UIColor *color = [[UIColor alloc] initWithPatternImage:syncBgImg];
-    UIColor * color = [UIColor darkGrayColor];
-    [self.myTableView setBackgroundColor:color];
+    [self.myTableView setBackgroundColor:
+            [UIColor colorWithRed:(38.0f/255.0f) green:(44.0f/255.0f) blue:(58.0f/255.0f) alpha:1.0f]];
     
     isSearchView = YES;
     
@@ -425,8 +425,8 @@
     [self.mySearchBar resignFirstResponder];
     [self resetSearch];
     
-    [self.myTableView setBackgroundColor:[UIColor darkGrayColor]];
-    [self.myTableView setContentOffset:CGPointMake(0, 0) animated:NO];
+    [self.myTableView setBackgroundColor:[UIColor whiteColor]];
+    [self.myTableView setContentOffset:CGPointMake(0, -8) animated:NO];
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchTerm{
@@ -517,10 +517,6 @@
     self.navigationController.navigationBarHidden = NO;
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    #warning need to change a photo
-//    [self.myTableView setBackgroundColor:[UIColor blackColor]];
-    //平铺背景图片
- 
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     UIImage *backgroundImage = [UIImage imageNamed:@"导航栏.png"];
     if (version >= 5.0) {
@@ -708,34 +704,7 @@
         }
     }
     
-//    UIButton * cancel = [UIButton buttonWithType:UIButtonTypeCustom];
-//    UIImage * cancelImg = [[UIImage alloc]initWithContentsOfFile:
-//                           [[NSBundle mainBundle]pathForResource:@"button_down" ofType:@"png"]];
-//    [cancel setBackgroundImage:cancelImg forState:UIControlStateNormal];
-//    [cancel setFrame:CGRectMake(258, 10, 52, 24)];
-//    [cancel setTitle:@"取消" forState:UIControlStateNormal];
-//    cancel.titleLabel.font = [UIFont systemFontOfSize: 12.0];
-//    cancel.titleLabel.textColor = [UIColor whiteColor];
-//    [self.mySearchBar addSubview:cancel];
-//    [self.mySearchBar sizeThatFits:CGSizeMake(258, 44)];
-//    self.mySearchBar.showsCancelButton = YES;
-    
     self.mySearchBar.delegate = self;
-    
-    //到顶部按钮
-//    toTop =
-//    [[UIButton alloc]initWithFrame:CGRectMake(260, rect_screen.size.height - 76, 32, 32)];
-//    
-//    UIImage * topImg = [[UIImage alloc]initWithContentsOfFile:
-//                        [[NSBundle mainBundle]pathForResource:@"toTop" ofType:@"png"]];
-//    [toTop setBackgroundImage:topImg forState:UIControlStateNormal];
-//    [topImg release];
-//    
-//    [toTop addTarget:self action:@selector(toTopPress) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [toTop setAlpha:0.7];
-//    [self.myView addSubview:toTop];
-//    toTop.hidden = YES;
     
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver: self
@@ -1121,7 +1090,9 @@
         [self.myTableView reloadData];
     
         //设置列表背景颜色
-        [self.myTableView setBackgroundColor:[UIColor darkGrayColor]];
+        [self.myTableView setBackgroundColor:
+                          [UIColor colorWithRed:(38.0f/255.0f) green:(44.0f/255.0f) blue:(58.0f/255.0f)
+                                          alpha:1.0f]];
 }
 
 /*
