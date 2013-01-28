@@ -158,13 +158,7 @@
             //搜索
             if (isSearchView == YES) {
                 //隐藏搜索栏
-                NSLog(@"hei:%f",scrollView.contentOffset.y);
-                CGContextRef context = UIGraphicsGetCurrentContext();
-                [UIView beginAnimations:nil context:context];
-                [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-                [UIView setAnimationDuration:1.0f];
-                [self.mySearchBar setAlpha:0.0f];
-                [UIView commitAnimations];
+
                 
                 //                    self.wantsFullScreenLayout = ;
                 [self.mySearchBar resignFirstResponder];
@@ -239,7 +233,7 @@
                 right.hidden = YES;
                 mySearchBtn.hidden = YES;
                 
-                //                [self.myTableView setFrame:CGRectMake(0, 44, 320, rect_screen.size.height - 44 - 20)];
+//                [self.myTableView setFrame:CGRectMake(0, 44, 320, rect_screen.size.height - 44 - 20)];
                 
             } else {
 //                [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -282,7 +276,8 @@
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if (isSearchView) {
+    if (currentOffset > (rect_screen.size.height - 100) / 5
+        && isSearchView) {
         CGContextRef context = UIGraphicsGetCurrentContext();
         [UIView beginAnimations:nil context:context];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -1313,9 +1308,16 @@
     // drag 20px and keyboard will start move
 //    currentOffset = dy > 20 ? dy - 20 : 0;
     currentOffset = dy;
-    NSLog(@"current:%f",currentOffset);
-    if (currentOffset >= 44) {
-        NSLog(@"bin");
+//    NSLog(@"current:%f",currentOffset);
+    if (currentOffset >= (rect_screen.size.height - 100) / 5) {
+//        NSLog(@"bin");
+//        NSLog(@"hei:%f",scrollView.contentOffset.y);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [UIView beginAnimations:nil context:context];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:1.0f];
+        [self.mySearchBar setAlpha:0.0f];
+        [UIView commitAnimations];
     }
 
 }
