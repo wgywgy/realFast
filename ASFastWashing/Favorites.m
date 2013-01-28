@@ -234,6 +234,8 @@
         CGRect bounds = [self.myTableView bounds];
         bounds.origin.y += self.mySearchBar.bounds.size.height;
         [self.myTableView setBounds:bounds];
+        
+        //变换按钮
         self.navigationItem.rightBarButtonItem = nil;
         
         UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
