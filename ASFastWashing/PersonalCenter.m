@@ -177,7 +177,7 @@
     }
     //添加右上角“忘记密码”按钮
     UIButton *forgetPasswordButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 68, 30)];
-    [forgetPasswordButton setTitle:@"忘记密码" forState:UIControlStateNormal];
+    [forgetPasswordButton setTitle:@"找回密码" forState:UIControlStateNormal];
     [forgetPasswordButton addTarget:self action:@selector(forgetPassword:) forControlEvents:UIControlEventTouchUpInside];
     [forgetPasswordButton setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
     forgetPasswordButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
