@@ -230,7 +230,7 @@
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
         UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
-        image.frame = CGRectMake(9, 5, 16, 20);
+        image.frame = CGRectMake(10, 5, 16, 20);
         [right addSubview:image];
         [image release];
         [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
@@ -334,7 +334,7 @@
         [editbarButton release];
         [editButton release];
         //按钮 -- 删除全部
-        UIButton *editAllButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 35)];
+        UIButton *editAllButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 62, 30)];
         [editAllButton setTitle:@"删除全部" forState:UIControlStateNormal];
         [editAllButton addTarget:self action:@selector(removeAllConnect:) forControlEvents:UIControlEventTouchUpInside];
         [editAllButton setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
@@ -350,7 +350,7 @@
         UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
         UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
         UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
-        image.frame = CGRectMake(9, 5, 16, 20);
+        image.frame = CGRectMake(10, 5, 16, 20);
         [right addSubview:image];
         [image release];
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];

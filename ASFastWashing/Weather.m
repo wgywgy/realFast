@@ -171,9 +171,9 @@
     [leftBarButton release];
     [leftButton release];
     
-    UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 66, 35)];
+    UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 62, 30)];
     [right setTitle:@"切换城市" forState:UIControlStateNormal];
-    right.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+    right.titleLabel.font = [UIFont systemFontOfSize: 12.0];
     [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
     [right addTarget:self action:@selector(press:) forControlEvents:UIControlEventTouchUpInside];
     
