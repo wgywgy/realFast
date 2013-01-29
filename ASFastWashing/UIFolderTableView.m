@@ -89,7 +89,7 @@
     UIImage *screenshot = [self screenshotWithOffset:-deltaY];
     
     // 配置上下遮罩
-    //rect_screen = [[UIScreen mainScreen]bounds];
+    rect_screen = [[UIScreen mainScreen]bounds];
     CGRect upperRect = CGRectMake(0, deltaY, width, position.y - deltaY);
     CGRect lowerRect = CGRectMake(0, position.y, width, height + deltaY - position.y);
     
@@ -264,7 +264,7 @@
     
     FolderCoverView *button;
     if (isTop) {
-        button = [[[FolderCoverView alloc] initWithFrame:aRect offset:self.rowHeight] autorelease];
+        button = [[[FolderCoverView alloc] initWithFrame:aRect offset:(rect_screen.size.height - 64) / 5] autorelease];
         
         UIImageView *notch = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tip.png"]] autorelease];
         notch.center = CGPointMake(position.x, height - 2);

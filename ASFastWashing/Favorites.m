@@ -68,14 +68,6 @@
     if (version >= 5.0) {
         [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     }
-    UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
-    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
-    [leftButton addTarget:self action:@selector(revealSidebar) forControlEvents:UIControlEventTouchUpInside];
-    [leftButton setBackgroundImage:tmp forState:UIControlStateNormal];
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = leftBarButton;
-    [leftBarButton release];
-    [leftButton release];
     
     //dejavu: tableview无分割线
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -161,10 +153,10 @@
     
     [self.myTableView setEditing:!self.myTableView.editing animated:YES];
     if (self.myTableView.editing) {
-        
+        //按钮 -- 完成
         UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
         [right setTitle:@"完成" forState:UIControlStateNormal];
-        right.titleLabel.font = [UIFont systemFontOfSize: 11.0];
+        right.titleLabel.font = [UIFont systemFontOfSize: 12.0];
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -173,10 +165,10 @@
         [rightButton release];
         [right release];
         
-        
-        UIButton * left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 56, 30)];
+        //按钮 -- 删除全部
+        UIButton * left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 64, 35)];
         [left setTitle:@"删除全部" forState:UIControlStateNormal];
-        left.titleLabel.font = [UIFont systemFontOfSize: 11.0];
+        left.titleLabel.font = [UIFont systemFontOfSize: 12.0];
         [left setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         [left addTarget:self action:@selector(removeAllShop:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -187,10 +179,11 @@
         
     }
     else{
+        //按钮 -- 编辑
         UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
         UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
         UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
-        image.frame = CGRectMake(9, 5, 18, 20);
+        image.frame = CGRectMake(9, 5, 16, 20);
         [right addSubview:image];
         [image release];
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
@@ -295,7 +288,7 @@
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
         UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
-        image.frame = CGRectMake(9, 5, 18, 20);
+        image.frame = CGRectMake(9, 5, 16, 20);
         [right addSubview:image];
         [image release];
         [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
@@ -305,6 +298,16 @@
         [rightButton release];
         [right release];
     }
+    
+    UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+    [leftButton addTarget:self action:@selector(revealSidebar) forControlEvents:UIControlEventTouchUpInside];
+    [leftButton setBackgroundImage:tmp forState:UIControlStateNormal];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+    [leftBarButton release];
+    [leftButton release];
+    
     [_myTableView reloadData];
 }
 
