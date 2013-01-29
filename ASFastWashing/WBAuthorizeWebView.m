@@ -43,46 +43,124 @@
 
 - (id)init
 {
-    if (self = [super initWithFrame:CGRectMake(0, 0, 320, 480)])
+    if (self = [super initWithFrame:[UIScreen mainScreen].applicationFrame])
     {
-        // background settings
-        [self setBackgroundColor:[UIColor clearColor]];
-        [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
         
-        // add the panel view
-        panelView = [[UIView alloc] initWithFrame:CGRectMake(10, 30, 300, 440)];
-        [panelView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.55]];
-        [[panelView layer] setMasksToBounds:NO]; // very important
-        [[panelView layer] setCornerRadius:10.0];
-        [self addSubview:panelView];
+        /////////////
+
+        self.backgroundColor = [UIColor clearColor];
+        [self.layer setCornerRadius:10.0];
+        [self.layer setMasksToBounds:YES];
+        self.clipsToBounds = YES;
         
-        // add the conainer view
-        containerView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 280, 420)];
-        [[containerView layer] setBorderColor:[UIColor colorWithRed:0. green:0. blue:0. alpha:0.7].CGColor];
-        [[containerView layer] setBorderWidth:1.0];
+        UIView *skinView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        skinView.backgroundColor = [UIColor blackColor];
+        skinView.alpha = 0.4f;
+        [self addSubview:skinView];
+        [skinView release];
+        
+        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancelButton.frame = CGRectMake(self.frame.size.width - 55, 0,35, 35);
+        [cancelButton setImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+        [cancelButton setImage:[UIImage imageNamed:@"close_selected.png"] forState:UIControlStateHighlighted];
+        [cancelButton addTarget:self action:@selector(closeAuthorizeWeb) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:cancelButton];
+        //////////////
+        
+//        // background settings
+//        [self setBackgroundColor:[UIColor clearColor]];
+//        [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+//        
+//        // add the panel view
+//        panelView = [[UIView alloc] initWithFrame:CGRectMake(10, 30, 300, 440)];
+//        [panelView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.55]];
+//        [[panelView layer] setMasksToBounds:NO]; // very important
+//        [[panelView layer] setCornerRadius:10.0];
+//        [self addSubview:panelView];
+//        
+//        // add the conainer view
+//        containerView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 280, 420)];
+//        [[containerView layer] setBorderColor:[UIColor colorWithRed:0. green:0. blue:0. alpha:0.7].CGColor];
+//        [[containerView layer] setBorderWidth:1.0];
         
         
         // add the web view
-        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 280, 390)];
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 30, self.frame.size.width - 40, self.frame.size.height - 60)];
 		[webView setDelegate:self];
-		[containerView addSubview:webView];
+		[self addSubview:webView];
         
-        [panelView addSubview:containerView];
+        //[panelView addSubview:containerView];
         
         indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [indicatorView setCenter:CGPointMake(160, 240)];
         [self addSubview:indicatorView];
         
+        [self sizeToFitOrientation:YES];
+
+//        UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [closeButton setImage:[UIImage imageNamed:@"sinaclose.png"] forState:UIControlStateNormal];
+//        [closeButton addTarget:self action:@selector(closeAuthorizeWeb) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [closeButton setFrame:CGRectMake(284, 10, 40, 40)];
+//        [self addSubview:closeButton];
         
-        UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [closeButton setImage:[UIImage imageNamed:@"sinaclose.png"] forState:UIControlStateNormal];
-        [closeButton addTarget:self action:@selector(closeAuthorizeWeb) forControlEvents:UIControlEventTouchUpInside];
-        
-        [closeButton setFrame:CGRectMake(284, 10, 40, 40)];
-        [self addSubview:closeButton];
+
 
     }
     return self;
+}
+
+
+- (void)viewAnimationShow
+{
+    self.alpha = 0.0;
+    self.transform = CGAffineTransformScale([self transform], 0.001, 0.001);
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDelegate:self];
+    //[UIView setAnimationDidStopSelector:@selector(bounce1AnimationStopped)];
+    self.alpha = 1.0;
+    self.transform = CGAffineTransformScale([self transform], 1.3, 1.3);
+    [UIView commitAnimations];
+}
+- (void)bounce1AnimationStopped {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(bounce2AnimationStopped)];
+    self.transform = CGAffineTransformScale([self transform], 1, 1);
+    [UIView commitAnimations];
+}
+- (void)bounce2AnimationStopped {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    self.transform = [self transform];
+    [UIView commitAnimations];
+}
+
+
+- (void)sizeToFitOrientation:(BOOL)transform
+{
+    if (transform) {
+        self.transform = CGAffineTransformIdentity;
+    }
+    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    CGPoint center = CGPointMake(frame.origin.x + ceil(frame.size.width/2),
+                                 frame.origin.y + ceil(frame.size.height/2));
+    
+    CGFloat scale_factor = 1.0f;
+    
+    CGFloat width = floor(scale_factor * frame.size.width) - 20;
+    CGFloat height = floor(scale_factor * frame.size.height) - 20;
+    
+
+    self.frame = CGRectMake(10, 10, width, height);
+    
+    self.center = center;
+    
+    if (transform) {
+        self.transform = [self transformForOrientation:transform];
+    }
 }
 
 - (void)dealloc
@@ -109,33 +187,33 @@
     return [UIApplication sharedApplication].statusBarOrientation;
 }
 
-- (void)sizeToFitOrientation:(UIInterfaceOrientation)orientation
-{
-    [self setTransform:CGAffineTransformIdentity];
-    
-    if (UIInterfaceOrientationIsLandscape(orientation))
-    {
-        [self setFrame:CGRectMake(0, 0, 480, 320)];
-        [panelView setFrame:CGRectMake(10, 30, 460, 280)];
-        [containerView setFrame:CGRectMake(10, 10, 440, 260)];
-        [webView setFrame:CGRectMake(0, 0, 440, 260)];
-        [indicatorView setCenter:CGPointMake(240, 160)];
-    }
-    else
-    {
-        [self setFrame:CGRectMake(0, 0, 320, 480)];
-        [panelView setFrame:CGRectMake(10, 30, 300, 440)];
-        [containerView setFrame:CGRectMake(10, 10, 280, 420)];
-        [webView setFrame:CGRectMake(0, 0, 280, 420)];
-        [indicatorView setCenter:CGPointMake(160, 240)];
-    }
-    
-    [self setCenter:CGPointMake(160, 240)];
-    
-    [self setTransform:[self transformForOrientation:orientation]];
-    
-    previousOrientation = orientation;
-}
+//- (void)sizeToFitOrientation:(UIInterfaceOrientation)orientation
+//{
+//    [self setTransform:CGAffineTransformIdentity];
+//    
+//    if (UIInterfaceOrientationIsLandscape(orientation))
+//    {
+//        [self setFrame:CGRectMake(0, 0, 480, 320)];
+//        [panelView setFrame:CGRectMake(10, 30, 460, 280)];
+//        [containerView setFrame:CGRectMake(10, 10, 440, 260)];
+//        [webView setFrame:CGRectMake(0, 0, 440, 260)];
+//        [indicatorView setCenter:CGPointMake(240, 160)];
+//    }
+//    else
+//    {
+//        [self setFrame:CGRectMake(0, 0, 320, 480)];
+//        [panelView setFrame:CGRectMake(10, 30, 300, 440)];
+//        [containerView setFrame:CGRectMake(10, 10, 280, 420)];
+//        [webView setFrame:CGRectMake(0, 0, 280, 420)];
+//        [indicatorView setCenter:CGPointMake(160, 240)];
+//    }
+//    
+//    [self setCenter:CGPointMake(160, 240)];
+//    
+//    [self setTransform:[self transformForOrientation:orientation]];
+//    
+//    previousOrientation = orientation;
+//}
 
 - (CGAffineTransform)transformForOrientation:(UIInterfaceOrientation)orientation
 {  
@@ -251,24 +329,24 @@
 		window = [[UIApplication sharedApplication].windows objectAtIndex:0];
 	}
   	[window addSubview:self];
-    
-    if (animated)
-    {
-        [panelView setAlpha:0];
-        CGAffineTransform transform = CGAffineTransformIdentity;
-        [panelView setTransform:CGAffineTransformScale(transform, 0.3, 0.3)];
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.2];
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(bounceOutAnimationStopped)];
-        [panelView setAlpha:0.5];
-        [panelView setTransform:CGAffineTransformScale(transform, 1.1, 1.1)];
-        [UIView commitAnimations];
-    }
-    else
-    {
-        [self allAnimationsStopped];
-    }
+    [self viewAnimationShow];
+//    if (animated)
+//    {
+//        [panelView setAlpha:0];
+//        CGAffineTransform transform = CGAffineTransformIdentity;
+//        [panelView setTransform:CGAffineTransformScale(transform, 0.3, 0.3)];
+//        [UIView beginAnimations:nil context:nil];
+//        [UIView setAnimationDuration:0.2];
+//        [UIView setAnimationDelegate:self];
+//        [UIView setAnimationDidStopSelector:@selector(bounceOutAnimationStopped)];
+//        [panelView setAlpha:0.5];
+//        [panelView setTransform:CGAffineTransformScale(transform, 1.1, 1.1)];
+//        [UIView commitAnimations];
+//    }
+//    else
+//    {
+//        [self allAnimationsStopped];
+//    }
     
     [self addObservers];
 }

@@ -162,9 +162,9 @@
     [self.myTableView setEditing:!self.myTableView.editing animated:YES];
     if (self.myTableView.editing) {
         
-        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 35)];
+        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
         [right setTitle:@"完成" forState:UIControlStateNormal];
-        right.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+        right.titleLabel.font = [UIFont systemFontOfSize: 11.0];
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -174,9 +174,9 @@
         [right release];
         
         
-        UIButton * left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 66, 35)];
+        UIButton * left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 56, 30)];
         [left setTitle:@"删除全部" forState:UIControlStateNormal];
-        left.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+        left.titleLabel.font = [UIFont systemFontOfSize: 11.0];
         [left setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         [left addTarget:self action:@selector(removeAllShop:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -187,9 +187,12 @@
         
     }
     else{
-        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 35)];
-        [right setTitle:@"编辑" forState:UIControlStateNormal];
-        right.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
+        UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
+        UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
+        image.frame = CGRectMake(9, 5, 18, 20);
+        [right addSubview:image];
+        [image release];
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -288,10 +291,13 @@
     
     _stores = [[NSMutableArray alloc]initWithArray:[self GetShopInfoFromLocal]];
     if ([_stores count]!=0) {
-        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 35)];
-        [right setTitle:@"编辑" forState:UIControlStateNormal];
-        right.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
+        UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
+        UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
+        image.frame = CGRectMake(9, 5, 18, 20);
+        [right addSubview:image];
+        [image release];
         [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithCustomView:right];

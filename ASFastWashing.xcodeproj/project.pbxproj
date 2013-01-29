@@ -325,6 +325,8 @@
 		CE8E421816A8EB72005CABD0 /* ProvinceCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8E421716A8EB72005CABD0 /* ProvinceCity.plist */; };
 		CEA59FBF1695B80600D00D06 /* ASShopLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA59FBD1695B80600D00D06 /* ASShopLocationController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CEA59FC01695B80600D00D06 /* ASShopLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA59FBE1695B80600D00D06 /* ASShopLocationController.xib */; };
+		CEA8C1E116B678AF00215B43 /* 垃圾桶@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA8C1E016B678AF00215B43 /* 垃圾桶@2x.png */; };
+		CEA8C1E416B678B600215B43 /* 垃圾桶.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA8C1E316B678B600215B43 /* 垃圾桶.png */; };
 		E106041F1681A685004A7173 /* ASAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E106041E1681A685004A7173 /* ASAboutUsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E10AC57C168309CF0001CEC3 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = E10AC57B168309CF0001CEC3 /* phone.png */; };
 		E11ED49E168AA45300220824 /* ASHelpCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E11ED49C168AA45300220824 /* ASHelpCenterCell.m */; };
@@ -791,6 +793,8 @@
 		CEA59FBC1695B80600D00D06 /* ASShopLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASShopLocationController.h; sourceTree = "<group>"; };
 		CEA59FBD1695B80600D00D06 /* ASShopLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASShopLocationController.m; sourceTree = "<group>"; };
 		CEA59FBE1695B80600D00D06 /* ASShopLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASShopLocationController.xib; sourceTree = "<group>"; };
+		CEA8C1E016B678AF00215B43 /* 垃圾桶@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "垃圾桶@2x.png"; sourceTree = "<group>"; };
+		CEA8C1E316B678B600215B43 /* 垃圾桶.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "垃圾桶.png"; sourceTree = "<group>"; };
 		E106041D1681A685004A7173 /* ASAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASAboutUsViewController.h; sourceTree = "<group>"; };
 		E106041E1681A685004A7173 /* ASAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASAboutUsViewController.m; sourceTree = "<group>"; };
 		E10AC57B168309CF0001CEC3 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
@@ -1350,6 +1354,8 @@
 		18123F9E1666B93D00E8A33E /* FaouritesController */ = {
 			isa = PBXGroup;
 			children = (
+				CEA8C1E016B678AF00215B43 /* 垃圾桶@2x.png */,
+				CEA8C1E316B678B600215B43 /* 垃圾桶.png */,
 				CE281194167704E700FEAF9A /* Favorites.h */,
 				CE2A22E416787BC600EBFE1B /* Favorites.m */,
 				CE2A22E516787BC600EBFE1B /* Favorites.xib */,
@@ -2018,6 +2024,8 @@
 				038D888916A79C83006253C2 /* button背景@2x.png in Resources */,
 				038D889016A8E104006253C2 /* 我的收藏@2x.png in Resources */,
 				CE8E421816A8EB72005CABD0 /* ProvinceCity.plist in Resources */,
+				CEA8C1E116B678AF00215B43 /* 垃圾桶@2x.png in Resources */,
+				CEA8C1E416B678B600215B43 /* 垃圾桶.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
