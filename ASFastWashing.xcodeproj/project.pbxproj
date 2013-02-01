@@ -1636,7 +1636,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ASFastWashing/ASFastWashing-Prefix.pch";
 				INFOPLIST_FILE = "ASFastWashing/ASFastWashing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ASFastWashing/ShareSDK_v1.1.5/SDKExport\"",
@@ -1658,7 +1658,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ASFastWashing/ASFastWashing-Prefix.pch";
 				INFOPLIST_FILE = "ASFastWashing/ASFastWashing-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ASFastWashing/ShareSDK_v1.1.5/SDKExport\"",
