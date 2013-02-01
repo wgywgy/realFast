@@ -1636,13 +1636,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ASFastWashing/ASFastWashing-Prefix.pch";
 				INFOPLIST_FILE = "ASFastWashing/ASFastWashing-Info.plist";
+<<<<<<< HEAD
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+=======
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+>>>>>>> 从6.1改成6.0
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ASFastWashing/ShareSDK_v1.1.5/SDKExport\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1658,13 +1663,18 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ASFastWashing/ASFastWashing-Prefix.pch";
 				INFOPLIST_FILE = "ASFastWashing/ASFastWashing-Info.plist";
+<<<<<<< HEAD
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+=======
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+>>>>>>> 从6.1改成6.0
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ASFastWashing/ShareSDK_v1.1.5/SDKExport\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
