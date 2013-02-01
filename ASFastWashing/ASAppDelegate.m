@@ -19,6 +19,7 @@
 #import "ASUser.h"
 #import "ASHelpCenterViewController.h"
 #import "ASModifyPersonalInformationViewController.h"
+#import <ShareSDK/ShareSDK.h>
 
 @interface ASAppDelegate ()
 
@@ -134,8 +135,24 @@
     self.window.rootViewController = self.revealController;
     //    }
     [self.window makeKeyAndVisible];
+    
+#pragma mark == shareSDK
+    [ShareSDK registerApp:@"520520test"];
+    
     return YES;
 }
+
+#pragma mark == shareSDK 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url wxDelegate:self];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

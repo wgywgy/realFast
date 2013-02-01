@@ -10,8 +10,8 @@
 #import "ASRequestDelegate.h"
 #import "myScrollView.h"
 
-#import "WBEngine.h"
-#import "WBSendView.h"
+//#import "WBEngine.h"
+//#import "WBSendView.h"
 
 
 
@@ -21,8 +21,8 @@
 
 @interface ASStoreDetailInfo : UIViewController<UITableViewDataSource,UITableViewDelegate,ASRequestDelegate,
                                                 myScrollViewDatasource,UIActionSheetDelegate,
-                                                WBEngineDelegate, WBSendViewDelegate,
-                                                RenrenDelegate,
+//                                                WBEngineDelegate, WBSendViewDelegate,
+//                                                RenrenDelegate,
                                                 UIAlertViewDelegate>
 {
     
@@ -62,12 +62,12 @@
 -(IBAction)telphone:(id)sender;
 
 //sina
-@property (nonatomic , retain) WBEngine *weiBoEngine;
-@property (nonatomic , retain) WBSendView * sendView;
-- (IBAction)sinaBtnPressed:(id)sender;
+//@property (nonatomic , retain) WBEngine *weiBoEngine;
+//@property (nonatomic , retain) WBSendView * sendView;
+//- (IBAction)sinaBtnPressed:(id)sender;
 
 //renren
-@property (nonatomic , retain) Renren *renren;
--(void)shareRenForSongs;
+//@property (nonatomic , retain) Renren *renren;
+//-(void)shareRenForSongs;
 
 @end
