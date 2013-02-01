@@ -68,14 +68,9 @@
     if (version >= 5.0) {
         [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     }
-    UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
-    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
-    [leftButton addTarget:self action:@selector(revealSidebar) forControlEvents:UIControlEventTouchUpInside];
-    [leftButton setBackgroundImage:tmp forState:UIControlStateNormal];
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = leftBarButton;
-    [leftBarButton release];
-    [leftButton release];
+    
+    //dejavu: tableview无分割线
+    self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     //隐藏搜索栏
     CGRect bounds = [self.myTableView bounds];
@@ -90,7 +85,7 @@
     UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:path]];
     imageView.frame = CGRectMake( 60 , ((rect_screen.size.height - 64) / 2 ) - 130, 200, 200);
     
-    UILabel * lable = [[UILabel alloc]initWithFrame:CGRectMake(70 ,((rect_screen.size.height - 64) / 2 ) + 100 , 200 , 40)];
+    UILabel * lable = [[UILabel alloc]initWithFrame:CGRectMake(90,((rect_screen.size.height - 64) / 2 ) + 100 , 200 , 40)];
     lable.text = @"您收藏夹为空";
     [lable setFont:[UIFont systemFontOfSize:22]];
     [lable setTextColor:[UIColor grayColor]];
@@ -158,10 +153,10 @@
     
     [self.myTableView setEditing:!self.myTableView.editing animated:YES];
     if (self.myTableView.editing) {
-        
-        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 35)];
+        //按钮 -- 完成
+        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
         [right setTitle:@"完成" forState:UIControlStateNormal];
-        right.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+        right.titleLabel.font = [UIFont systemFontOfSize: 12.0];
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -170,9 +165,10 @@
         [rightButton release];
         [right release];
         
-        UIButton * left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 66, 35)];
+        //按钮 -- 删除全部
+        UIButton * left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 62, 30)];
         [left setTitle:@"删除全部" forState:UIControlStateNormal];
-        left.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+        left.titleLabel.font = [UIFont systemFontOfSize: 12.0];
         [left setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         [left addTarget:self action:@selector(removeAllShop:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -183,9 +179,13 @@
         
     }
     else{
-        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 35)];
-        [right setTitle:@"编辑" forState:UIControlStateNormal];
-        right.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+        //按钮 -- 编辑
+        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
+        UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
+        UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
+        image.frame = CGRectMake(10, 5, 16, 20);
+        [right addSubview:image];
+        [image release];
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
         [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -230,6 +230,8 @@
         CGRect bounds = [self.myTableView bounds];
         bounds.origin.y += self.mySearchBar.bounds.size.height;
         [self.myTableView setBounds:bounds];
+        
+        //变换按钮
         self.navigationItem.rightBarButtonItem = nil;
         
         UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
@@ -282,10 +284,13 @@
     
     _stores = [[NSMutableArray alloc]initWithArray:[self GetShopInfoFromLocal]];
     if ([_stores count]!=0) {
-        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 35)];
-        [right setTitle:@"编辑" forState:UIControlStateNormal];
-        right.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
         [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
+        UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
+        UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
+        image.frame = CGRectMake(10, 5, 16, 20);
+        [right addSubview:image];
+        [image release];
         [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithCustomView:right];
@@ -293,10 +298,25 @@
         [rightButton release];
         [right release];
     }
+    
+    UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+    [leftButton addTarget:self action:@selector(revealSidebar) forControlEvents:UIControlEventTouchUpInside];
+    [leftButton setBackgroundImage:tmp forState:UIControlStateNormal];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+    [leftBarButton release];
+    [leftButton release];
+    
     [_myTableView reloadData];
 }
 
-//获取本地收藏的商店
+/*****************************************
+ *函数名：
+ *参数：
+ *返回值：
+ *功能：获取本地收藏的商店
+ ****************************************/
 - (NSArray*)GetShopInfoFromLocal
 {
     NSUserDefaults * preferences = [NSUserDefaults standardUserDefaults];

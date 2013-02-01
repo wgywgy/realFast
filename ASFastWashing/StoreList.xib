@@ -42,7 +42,6 @@
 						<string key="NSFrameSize">{320, 548}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -189,13 +188,28 @@
 					<string key="className">StoreList</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="backgroundTap:">id</string>
+						<string key="SearchBtn:">id</string>
+						<string key="agreeSort:">UIButton</string>
+						<string key="distanceSort:">UIButton</string>
+						<string key="favoriteSort:">UIButton</string>
 						<string key="showMap:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="backgroundTap:">
-							<string key="name">backgroundTap:</string>
+						<object class="IBActionInfo" key="SearchBtn:">
+							<string key="name">SearchBtn:</string>
 							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="agreeSort:">
+							<string key="name">agreeSort:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBActionInfo" key="distanceSort:">
+							<string key="name">distanceSort:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBActionInfo" key="favoriteSort:">
+							<string key="name">favoriteSort:</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBActionInfo" key="showMap:">
 							<string key="name">showMap:</string>

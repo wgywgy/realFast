@@ -10,6 +10,8 @@
 
 #import "ASAppDelegate.h"
 
+#import <ShareSDK/ShareConfig.h>
+
 int main(int argc, char *argv[])
 {
     @autoreleasepool {

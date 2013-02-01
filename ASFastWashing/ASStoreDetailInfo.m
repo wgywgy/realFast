@@ -17,15 +17,10 @@
 #import "JPStupidButton.h"
 #import "ASShopLocationController.h"
 
-//sina
-#import "WBEngine.h"
-#import "WBSendView.h"
+#import <ShareSDK/ShareSDK.h>
 
-#define kWBSDKDemoAppKey @"2740796968"
-#define kWBSDKDemoAppSecret @"db71188d8c4ea4badb350df899650eea"
-
-//renren
-#define DEBUG 1
+#define IMAGE_NAME @"sharesdk_img.jpg"
+#define CONTENT @"我使用的是ShareSDK社会化分享组件，它不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博、人人网、开心网、豆瓣等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://sharesdk.cn @ShareSDK"
 
 @interface ASStoreDetailInfo ()
 
@@ -43,9 +38,9 @@
 @synthesize myTableView = _myTableView;
 @synthesize store = _store;
 
-@synthesize weiBoEngine = _weiBoEngine;
-@synthesize sendView = _sendView;
-@synthesize renren = _renren;
+//@synthesize weiBoEngine = _weiBoEngine;
+//@synthesize sendView = _sendView;
+//@synthesize renren = _renren;
 
 -(void)dealloc
 {
@@ -220,21 +215,77 @@
  */
 -(void)clickShareButton
 {
-    UIActionSheet * actionSheet = [[UIActionSheet alloc]initWithTitle:@"微博分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"新浪微博分享" otherButtonTitles:@"人人微博分享", nil];
-    [actionSheet showInView:self.view];
-    [actionSheet release];
+    id<ISSPublishContent> publishContent = [ShareSDK publishContent:CONTENT
+                                                     defaultContent:@""
+                                                              image:[UIImage imageNamed:IMAGE_NAME]
+                                                       imageQuality:0.8
+                                                          mediaType:SSPublishContentMediaTypeNews
+                                                              title:@"快洗"
+                                                                url:@"http://www.sharesdk.cn"
+                                                       musicFileUrl:nil
+                                                            extInfo:nil
+                                                           fileData:nil];
+    //定制微信好友内容
+    [publishContent addWeixinSessionUnitWithType:INHERIT_VALUE
+                                         content:@"Hello 微信好友!"
+                                           title:INHERIT_VALUE
+                                             url:INHERIT_VALUE
+                                           image:INHERIT_VALUE
+                                    imageQuality:INHERIT_VALUE
+                                    musicFileUrl:INHERIT_VALUE
+                                         extInfo:INHERIT_VALUE
+                                        fileData:INHERIT_VALUE];
+    
+    //定制微信朋友圈内容
+    [publishContent addWeixinTimelineUnitWithType:[NSNumber numberWithInteger:SSPublishContentMediaTypeMusic]
+                                          content:@"Hello 微信朋友圈!"
+                                            title:INHERIT_VALUE
+                                              url:@""
+                                            image:INHERIT_VALUE
+                                     imageQuality:INHERIT_VALUE
+                                     musicFileUrl:@"http://mp3.mwap8.com/destdir/Music/2009/20090601/ZuiXuanMinZuFeng20090601119.mp3"
+                                          extInfo:nil
+                                         fileData:nil];
+    
+    //定制QQ分享内容
+    [publishContent addQQUnitWithType:INHERIT_VALUE
+                              content:@"Hello QQ!"
+                                title:INHERIT_VALUE
+                                  url:INHERIT_VALUE
+                                image:INHERIT_VALUE
+                         imageQuality:INHERIT_VALUE];
+    
+    //定制邮件分享内容
+    [publishContent addMailUnitWithSubject:INHERIT_VALUE
+                                   content:@"<a href='http://sharesdk.cn'>Hello Mail</a>"
+                                    isHTML:[NSNumber numberWithBool:YES]
+                               attachments:INHERIT_VALUE];
+    
+    //定制短信分享内容
+    [publishContent addSMSUnitWithContent:@"Hello SMS!"];
+    
+    [ShareSDK showShareActionSheet:self
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                   oneKeyShareList:[NSArray defaultOneKeyShareList]
+                          autoAuth:YES                                  //委托SDK授权标识，YES：用户授权过期后自动弹出授权界面进行授权，NO：开发者自行处理
+     //                        convertUrl:YES                                  //委托转换链接标识，YES：对分享链接进行转换，NO：对分享链接不进行转换，为此值时不进行回流统计。
+                    shareViewStyle:ShareViewStyleDefault
+                    shareViewTitle:@"内容分享"
+                            result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                if (state == SSPublishContentStateSuccess)
+                                {
+                                    NSLog(@"分享成功");
+                                }
+                                else if (state == SSPublishContentStateFail)
+                                {
+                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
+                                }
+                            }];
+    
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        //新浪微博分享
-        [self sinaBtnPressed:nil];
-    }else if(buttonIndex == 1){
-        //人人微博分享
-        [self renrenBtnPressed:nil];
-    }
-}
 
 /*
  功能：收藏商店
@@ -726,36 +777,6 @@
     [evaluate release];
 }
 
-#pragma mark -- sina
-- (IBAction)sinaBtnPressed:(UIButton *)sender
-{
-    WBEngine * engine = [[WBEngine alloc] initWithAppKey:kWBSDKDemoAppKey appSecret:kWBSDKDemoAppSecret];
-    [engine setDelegate:self];
-    [engine setRootViewController:self];
-    [engine setRedirectURI:@"http://"];
-    [engine setIsUserExclusive:NO];
-    self.weiBoEngine = engine;
-    [engine release];
-    
-    if ([self.weiBoEngine isAuthorizeExpired]) {
-        [self.weiBoEngine logIn];
-    } else {
-        NSString * text = [NSString stringWithFormat:@"如果发布成功，我今天下午就没有白干！%@",[NSURL URLWithString:@"http://user.qzone.qq.com/1375056099?ptlang=2052"]];
-        self.sendView = [[[WBSendView alloc] initWithAppKey:kWBSDKDemoAppKey
-                                                  appSecret:kWBSDKDemoAppSecret
-                                                       text:text
-                                                      image:[UIImage imageNamed:@"1.png"]]
-                         autorelease];
-        self.sendView.delegate = self;
-        [self.sendView show:YES];
-        //        UIAlertView * myAlert = [[UIAlertView alloc] initWithTitle:@"hello" message:nil delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
-        //        [myAlert show];
-        //        [myAlert release];
-    }
-    if ([self.weiBoEngine isLoggedIn]) {
-        sender.titleLabel.text = @"发布";
-    }
-}
 
 - (void)myAlertView:(NSString *)text
 {
@@ -764,201 +785,6 @@
     [myAlert release];
 }
 
-#pragma mark - WBEngineDelegate Methods
 
-// Log in successfully.
-- (void)engineDidLogIn:(WBEngine *)engine
-{
-    NSString * text = [NSString stringWithFormat:@"如果发布成功，我今天下午就没有白干！%@",
-                       [NSURL URLWithString:@"http://user.qzone.qq.com/1375056099?ptlang=2052"]];
-    self.sendView = [[[WBSendView alloc] initWithAppKey:kWBSDKDemoAppKey
-                                              appSecret:kWBSDKDemoAppSecret
-                                                   text:text
-                                                  image:[UIImage imageNamed:@"1.png"]]
-                     autorelease];
-    self.sendView.delegate = self;
-    [self.sendView show:YES];
-}
-
-// If you try to log in with logIn or logInUsingUserID method, and
-// there is already some authorization info in the Keychain,
-// this method will be invoked.
-// You may or may not be allowed to continue your authorization,
-// which depends on the value of isUserExclusive.
-- (void)engineAlreadyLoggedIn:(WBEngine *)engine
-{
-    if ([engine isUserExclusive])
-    {
-        UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil
-                                                           message:@"请先登出！"
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"确定"
-                                                 otherButtonTitles:nil];
-        [alertView show];
-        [alertView release];
-    }
-}
-
-// Failed to log in.
-// Possible reasons are:
-// 1) Either username or password is wrong;
-// 2) Your app has not been authorized by Sina yet.
-- (void)engine:(WBEngine *)engine didFailToLogInWithError:(NSError *)error
-{
-    NSLog(@"didFailToLogInWithError: %@", error);
-    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil
-													   message:@"登录失败！"
-													  delegate:nil
-											 cancelButtonTitle:@"确定"
-											 otherButtonTitles:nil];
-	[alertView show];
-	[alertView release];
-}
-// Log out successfully.
-- (void)engineDidLogOut:(WBEngine *)engine
-{
-    //    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil
-    //													   message:@"登出成功！"
-    //													  delegate:self
-    //											 cancelButtonTitle:@"确定"
-    //											 otherButtonTitles:nil];
-    //    [alertView setTag:100];
-    //	[alertView show];
-    //	[alertView release];
-}
-// When you use the WBEngine's request methods,
-// you may receive the following four callbacks.
-- (void)engineNotAuthorized:(WBEngine *)engine
-{
-    
-}
-
-- (void)engineAuthorizeExpired:(WBEngine *)engine
-{
-    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil
-													   message:@"请重新登录！"
-													  delegate:nil
-											 cancelButtonTitle:@"确定"
-											 otherButtonTitles:nil];
-	[alertView show];
-	[alertView release];
-}
-
-- (void)engine:(WBEngine *)engine requestDidSucceedWithResult:(id)result
-{
-    NSLog(@"requestDidSucceedWithResult: %@", result);
-}
-
-- (void)engine:(WBEngine *)engine requestDidFailWithError:(NSError *)error
-{
-    NSLog(@"requestDidFailWithError: %@", error);
-}
-
-- (void)sendViewDidFinishSending:(WBSendView *)view
-{
-    [view hide:YES];
-    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil
-													   message:@"微博发送成功！"
-													  delegate:nil
-											 cancelButtonTitle:@"确定"
-											 otherButtonTitles:nil];
-	[alertView show];
-	[alertView release];
-    
-}
-- (void)sendView:(WBSendView *)view didFailWithError:(NSError *)error
-{
-    NSLog(@"didFailWithError: %@", error);
-    [view hide:YES];
-    UIAlertView* alertView = [[UIAlertView alloc]initWithTitle:nil
-													   message:@"微博发送失败！"
-													  delegate:nil
-											 cancelButtonTitle:@"确定"
-											 otherButtonTitles:nil];
-	[alertView show];
-	[alertView release];
-}
-
-#pragma mark --RenRen
-- (IBAction)renrenBtnPressed:(id)sender
-{
-    //此方法授权会提示有误
-    self.renren = [Renren sharedRenren];
-    if (![self.renren isSessionValid]) {
-        //[self shareRenForSongs];
-        [self.renren authorizationWithPermisson:nil andDelegate:self];
-    } else {
-        //        //[self.renren logout:self];
-        //        [self shareRenForSongs];
-    }
-    if ([self.renren isSessionValid]) {
-        [self shareRenForSongs];
-    }
-    //    NSArray * permissions = [NSArray arrayWithObjects:@"photo_upload",@"publish_feed", nil];
-    //    [self.renren authorizationWithPermisson:permissions andDelegate:self];
-    
-    //[self shareRenForSongs];
-}
--(void)shareRenForSongs
-{
-    //self.renren = [Renren sharedRenren];
-    NSString * text = [NSString stringWithFormat:@"大家好！祝大家今天体侧顺利过关！正在研究评论分享中……，嘿嘿，你懂得……"];
-    NSMutableDictionary *params=[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 @"http://share.renren.com/share/361395694/14744176443?from=web_matter",@"url",
-                                 @"xxx洗衣店",@"name",
-                                 //                                 @"访问我吧",@"action_name",
-                                 @"http://share.renren.com/share/361395694/14744176443?from=web_matter",@"action_link",
-                                 text,@"description",
-                                 @"小时候的照片！",@"caption",
-                                 //                                 @"http://fmn.rrimg.com/fmn060/20121112/1035/original_H63V_05f30000b5ae118d.jpg",@"image",
-                                 nil];
-    [self.renren dialog:@"feed" andParams:params andDelegate:self];
-    //    UIImage* image = [UIImage imageNamed:@"1.png"];
-    //    NSString *caption = @"这是一张测试图片";
-    //    [self.renren publishPhotoSimplyWithImage:image caption:caption];
-    
-}
-#pragma mark - Renren Delegate
-/**
- * 授权登录成功时被调用,第三方开发者实现这个方法
- * @param renren 传回代理授权登录接口请求的 Renren 类型对象。 */
-- (void)renrenDidLogin:(Renren *)renren
-{
-    //    [self shareRenForSongs];
-#ifdef DEBUG
-    NSLog(@"renren = %@",renren);
-#endif
-    
-}
-/**
- ￼6
- ￼人人网开放平台
- ￼* 授权登录失败时被调用,第三方开发者实现这个方法
- * @param renren 传回代理授权登录接口请求的 Renren 类型对象。 */
-- (void)renren:(Renren *)renren loginFailWithError:(ROError*)error
-{
-#ifdef DEBUG
-    NSLog(@"error = %@",error);
-#endif
-}
-
-/**
- * 接口请求成功,第三方开发者实现这个方法
- * @param renren 传回代理服务器接口请求的 Renren 类型对象。 * @param response 传回接口请求的响应。
- */
-- (void)renren:(Renren *)renren requestDidReturnResponse:(ROResponse*)response
-{
-    NSLog(@"response = %@",response);
-    //[renren logout:self];
-}
-/**
- * 用户登出成功后被调用 第三方开发者实现这个方法
- * @param renren 传回代理登出接口请求的 Renren 类型对象。 */
-- (void)renrenDidLogout:(Renren *)renren
-{
-#ifdef DEBUG
-    NSLog(@"logout renren = %@",renren);
-#endif
-}
 
 @end

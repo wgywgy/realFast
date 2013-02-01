@@ -156,6 +156,7 @@
 {
     self.view.userInteractionEnabled = NO;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -176,7 +177,7 @@
     }
     //添加右上角“忘记密码”按钮
     UIButton *forgetPasswordButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 68, 30)];
-    [forgetPasswordButton setTitle:@"忘记密码" forState:UIControlStateNormal];
+    [forgetPasswordButton setTitle:@"找回密码" forState:UIControlStateNormal];
     [forgetPasswordButton addTarget:self action:@selector(forgetPassword:) forControlEvents:UIControlEventTouchUpInside];
     [forgetPasswordButton setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
     forgetPasswordButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
@@ -312,6 +313,7 @@
     return cell;
 }
 #pragma mark - UITextFieldDelegate
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     NSData * data  = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
@@ -336,7 +338,9 @@
     //BUG 边缘
     textField.superview.backgroundColor = [UIColor colorWithRed:250.0/255 green:249.0/255 blue:222.0/255 alpha:1];
 }
-//限制textfield长度
+/*
+ 函数功能：限制textfield长度
+*/
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     // return NO to not change text
@@ -369,7 +373,7 @@
 
 /*
  函数功能：点击View的其他区域隐藏软键盘。
- */
+*/
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

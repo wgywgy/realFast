@@ -50,6 +50,7 @@
     
     //返回按钮
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    
     UIImage *backgroundImage = [UIImage imageNamed:@"导航栏.png"];
     if (version >= 5.0) {
         [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];

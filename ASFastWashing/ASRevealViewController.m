@@ -86,28 +86,31 @@ const CGFloat kASRevealSidebarFlickVelocity = 1000.0f;
 #pragma mark Memory Management
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.wantsFullScreenLayout = YES;
 		self.sidebarShowing = NO;
 		_tapRecog = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSidebar)];
 		_tapRecog.cancelsTouchesInView = YES;
 		
 		self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 		
-		_sidebarView = [[UIView alloc] initWithFrame:self.view.bounds];
+		_sidebarView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y + 20, self.view.bounds.size.width, self.view.bounds.size.height)];
 		_sidebarView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 		_sidebarView.backgroundColor = [UIColor clearColor];
 		[self.view addSubview:_sidebarView];
 		
 		_contentView = [[UIView alloc] initWithFrame:self.view.bounds];
 		_contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-		_contentView.backgroundColor = [UIColor clearColor];
+        _contentView.backgroundColor =
+        [UIColor colorWithRed:(38.0f/255.0f) green:(44.0f/255.0f) blue:(58.0f/255.0f) alpha:1.0f];
+//		_contentView.backgroundColor = [UIColor clearColor];
 		_contentView.layer.masksToBounds = NO;
-        _contentView.layer.cornerRadius = 8.0f;
+//        _contentView.layer.cornerRadius = 8.0f;
         _contentView.layer.shadowColor = [UIColor blackColor].CGColor;
-		_contentView.layer.shadowOffset = CGSizeMake(-3.0f, 0.0f);
-		_contentView.layer.shadowOpacity = 1.0f;
-		_contentView.layer.shadowRadius = 2.5f;
+		_contentView.layer.shadowOffset = CGSizeMake(-8.0f, 12.0f);
+		_contentView.layer.shadowOpacity = 0.6f;
+		_contentView.layer.shadowRadius = 8.0f;
         self.view.layer.masksToBounds = YES;
-        self.view.layer.cornerRadius = 6.0f;
+//        self.view.layer.cornerRadius = 8.0f;
 		_contentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:_contentView.bounds].CGPath;
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStylePlain target:self action:nil];
         self.navigationItem.backBarButtonItem = backBarButtonItem;

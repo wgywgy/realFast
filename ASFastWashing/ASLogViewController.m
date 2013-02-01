@@ -37,22 +37,13 @@
     if (self = [super initWithNibName:nil bundle:nil]) {
 		self.title = title;
         _revealBlock = [revealBlock copy];
-        UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
-        UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
-        [leftButton addTarget:self action:@selector(revealSidebar) forControlEvents:UIControlEventTouchUpInside];
-        [leftButton setBackgroundImage:tmp forState:UIControlStateNormal];
-        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
-		self.navigationItem.leftBarButtonItem = leftBarButton;
-        [leftBarButton release];
-        [leftButton release];
-
-        
 	}
 	return self;
 }
 - (void)revealSidebar {
     _revealBlock();
 }
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -225,6 +216,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.myTableView setEditing:NO animated:NO];
     //获取最近联系商家信息
     NSMutableArray* recentConnect  = [[NSUserDefaults standardUserDefaults] objectForKey:@"RecentConnect"];
     self.logList = [[[NSMutableArray alloc]initWithArray:recentConnect]autorelease];
@@ -234,19 +226,33 @@
     }
     else
     {
-        UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 35)];
-        [editButton setTitle:@"编辑" forState:UIControlStateNormal];
-        [editButton addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
-        [editButton setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
-        editButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
-        UIBarButtonItem *editbarButton = [[UIBarButtonItem alloc]initWithCustomView:editButton];
-        self.navigationItem.rightBarButtonItem = editbarButton;
-        [editbarButton release];
-        [editButton release];
-
+        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
+        [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
+        UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
+        UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
+        image.frame = CGRectMake(10, 5, 16, 20);
+        [right addSubview:image];
+        [image release];
+        [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithCustomView:right];
+        self.navigationItem.rightBarButtonItem = rightButton;
+        [rightButton release];
+        [right release];
+        
         [myTableView setAlpha:1];
         [myTableView reloadData];
     }
+    
+    UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+    [leftButton addTarget:self action:@selector(revealSidebar) forControlEvents:UIControlEventTouchUpInside];
+    [leftButton setBackgroundImage:tmp forState:UIControlStateNormal];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+    [leftBarButton release];
+    [leftButton release];
+    
 }
 
 - (void)viewDidLoad
@@ -317,22 +323,45 @@
     [self.myTableView setEditing:!self.myTableView.editing animated:YES];
     if (self.myTableView.editing) {
         
-        [self.navigationItem.rightBarButtonItem setTitle:@"完成"];
-        
-        UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 64, 35)];
-        [editButton setTitle:@"删除全部" forState:UIControlStateNormal];
-        [editButton addTarget:self action:@selector(removeAllConnect:) forControlEvents:UIControlEventTouchUpInside];
+        //按钮 -- 完成
+        UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+        [editButton setTitle:@"完成" forState:UIControlStateNormal];
+        [editButton addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
         [editButton setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
-        editButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+        editButton.titleLabel.font = [UIFont systemFontOfSize: 12.0];
         UIBarButtonItem *editbarButton = [[UIBarButtonItem alloc]initWithCustomView:editButton];
-        self.navigationItem.leftBarButtonItem = editbarButton;
+        self.navigationItem.rightBarButtonItem = editbarButton;
         [editbarButton release];
         [editButton release];
+        //按钮 -- 删除全部
+        UIButton *editAllButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 62, 30)];
+        [editAllButton setTitle:@"删除全部" forState:UIControlStateNormal];
+        [editAllButton addTarget:self action:@selector(removeAllConnect:) forControlEvents:UIControlEventTouchUpInside];
+        [editAllButton setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
+        editAllButton.titleLabel.font = [UIFont systemFontOfSize: 12.0];
+        UIBarButtonItem *edit = [[UIBarButtonItem alloc]initWithCustomView:editAllButton];
+        self.navigationItem.leftBarButtonItem = edit;
+        [edit release];
+        [editAllButton release];
 
     }
     else{
-        [self.navigationItem.rightBarButtonItem setTitle:@"编辑"];
+        //按钮 -- 编辑
+        UIButton * right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 30)];
+        UIImage * backImage = [UIImage imageNamed:@"垃圾桶.png"];
+        UIImageView * image = [[UIImageView alloc]initWithImage:backImage];
+        image.frame = CGRectMake(10, 5, 16, 20);
+        [right addSubview:image];
+        [image release];
+        [right setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
+        [right addTarget:self action:@selector(toggleEdit:) forControlEvents:UIControlEventTouchUpInside];
         
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithCustomView:right];
+        self.navigationItem.rightBarButtonItem = rightButton;
+        [rightButton release];
+        [right release];
+
+        //按钮 -- 导航按钮
         UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
         UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
         [leftButton addTarget:self action:@selector(revealSidebar) forControlEvents:UIControlEventTouchUpInside];
@@ -370,6 +399,18 @@
         }
        [myTableView reloadData];
        [myTableView setAlpha:0];
+        
+        //变换按钮
+        self.navigationItem.rightBarButtonItem = nil;
+        
+        UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
+        UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+        [leftButton addTarget:self action:@selector(revealSidebar) forControlEvents:UIControlEventTouchUpInside];
+        [leftButton setBackgroundImage:tmp forState:UIControlStateNormal];
+        UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+        self.navigationItem.leftBarButtonItem = leftBarButton;
+        [leftBarButton release];
+        [leftButton release];
     }
 }
 
@@ -383,9 +424,17 @@
         if ([logList count] == 0)
         {
             [myTableView setAlpha:0];
+            self.navigationItem.rightBarButtonItem = nil;
+            
+            UIImage * tmp = [UIImage imageNamed:@"导航按钮.png"];
+            UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+            [leftButton addTarget:self action:@selector(revealSidebar) forControlEvents:UIControlEventTouchUpInside];
+            [leftButton setBackgroundImage:tmp forState:UIControlStateNormal];
+            UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+            self.navigationItem.leftBarButtonItem = leftBarButton;
+            [leftBarButton release];
+            [leftButton release];
         }
-        else
-            [myTableView setAlpha:1];
 }
 
 - (void)CancelTheConnect:(NSInteger)row
