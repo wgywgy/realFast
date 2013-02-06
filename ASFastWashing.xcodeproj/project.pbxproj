@@ -19,6 +19,9 @@
 		03083B6916BBA21C00F2FBD4 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 03083B5E16BBA21C00F2FBD4 /* UIButton+WebCache.m */; };
 		03083B6A16BBA21C00F2FBD4 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 03083B6016BBA21C00F2FBD4 /* UIImageView+WebCache.m */; };
 		0315D715167F075A00902ECC /* selectBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0315D714167F075A00902ECC /* selectBg.png */; };
+		033AB28E16C2115400854A1F /* ASWebHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 033AB28C16C2115400854A1F /* ASWebHelpViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		033AB28F16C2115400854A1F /* ASWebHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033AB28D16C2115400854A1F /* ASWebHelpViewController.xib */; };
+		033AB29516C21A0B00854A1F /* FristJqueryMobile.html in Resources */ = {isa = PBXBuildFile; fileRef = 033AB29116C21A0B00854A1F /* FristJqueryMobile.html */; };
 		035D698716886A31008B2CD6 /* DropDownList.m in Sources */ = {isa = PBXBuildFile; fileRef = 035D698616886A31008B2CD6 /* DropDownList.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		035D698E1688AD2A008B2CD6 /* listBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 035D698D1688AD2A008B2CD6 /* listBg.png */; };
 		035D69901688AD39008B2CD6 /* mapButtonCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 035D698F1688AD39008B2CD6 /* mapButtonCenter.png */; };
@@ -138,12 +141,7 @@
 		18D7901C1665FCA100E3CA10 /* ASMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7901B1665FCA100E3CA10 /* ASMenuCell.m */; };
 		18D7901F1665FCFB00E3CA10 /* ASMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7901E1665FCFB00E3CA10 /* ASMenuViewController.m */; };
 		18D790241666035C00E3CA10 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D790231666035C00E3CA10 /* user.png */; };
-		18D7903D1666068800E3CA10 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18D790361666068800E3CA10 /* 9.jpg */; };
 		18D7903F1666068800E3CA10 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D790381666068800E3CA10 /* call.png */; };
-		18D790401666068800E3CA10 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18D790391666068800E3CA10 /* 10.jpg */; };
-		18D790411666068800E3CA10 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18D7903A1666068800E3CA10 /* 12.jpg */; };
-		18D790421666068800E3CA10 /* 14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18D7903B1666068800E3CA10 /* 14.jpg */; };
-		18D790431666068800E3CA10 /* 17.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18D7903C1666068800E3CA10 /* 17.jpg */; };
 		18D79048166606A300E3CA10 /* Help.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D79046166606A300E3CA10 /* Help.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18D79049166606A300E3CA10 /* Help.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D79047166606A300E3CA10 /* Help.xib */; };
 		18D7906D16660B1D00E3CA10 /* translate.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D7904B16660B1D00E3CA10 /* translate.png */; };
@@ -285,6 +283,12 @@
 		03083B5F16BBA21C00F2FBD4 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		03083B6016BBA21C00F2FBD4 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		0315D714167F075A00902ECC /* selectBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectBg.png; sourceTree = "<group>"; };
+		033AB28B16C2115400854A1F /* ASWebHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASWebHelpViewController.h; sourceTree = "<group>"; };
+		033AB28C16C2115400854A1F /* ASWebHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASWebHelpViewController.m; sourceTree = "<group>"; };
+		033AB28D16C2115400854A1F /* ASWebHelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASWebHelpViewController.xib; sourceTree = "<group>"; };
+		033AB29116C21A0B00854A1F /* FristJqueryMobile.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FristJqueryMobile.html; sourceTree = "<group>"; };
+		033AB29216C21A0B00854A1F /* jquery-1.8.2.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.8.2.min.js"; sourceTree = "<group>"; };
+		033AB29416C21A0B00854A1F /* jquery.mobile-1.2.0.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery.mobile-1.2.0.min.js"; sourceTree = "<group>"; };
 		035D698516886A31008B2CD6 /* DropDownList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownList.h; sourceTree = "<group>"; };
 		035D698616886A31008B2CD6 /* DropDownList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownList.m; sourceTree = "<group>"; };
 		035D698D1688AD2A008B2CD6 /* listBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listBg.png; sourceTree = "<group>"; };
@@ -434,12 +438,7 @@
 		18D7901D1665FCFB00E3CA10 /* ASMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMenuViewController.h; sourceTree = "<group>"; };
 		18D7901E1665FCFB00E3CA10 /* ASMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMenuViewController.m; sourceTree = "<group>"; };
 		18D790231666035C00E3CA10 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
-		18D790361666068800E3CA10 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
 		18D790381666068800E3CA10 /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
-		18D790391666068800E3CA10 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
-		18D7903A1666068800E3CA10 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
-		18D7903B1666068800E3CA10 /* 14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 14.jpg; sourceTree = "<group>"; };
-		18D7903C1666068800E3CA10 /* 17.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 17.jpg; sourceTree = "<group>"; };
 		18D79045166606A300E3CA10 /* Help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
 		18D79046166606A300E3CA10 /* Help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Help.m; sourceTree = "<group>"; };
 		18D79047166606A300E3CA10 /* Help.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Help.xib; sourceTree = "<group>"; };
@@ -649,6 +648,16 @@
 				03083B6016BBA21C00F2FBD4 /* UIImageView+WebCache.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		033AB29016C219FA00854A1F /* newHelp */ = {
+			isa = PBXGroup;
+			children = (
+				033AB29116C21A0B00854A1F /* FristJqueryMobile.html */,
+				033AB29216C21A0B00854A1F /* jquery-1.8.2.min.js */,
+				033AB29416C21A0B00854A1F /* jquery.mobile-1.2.0.min.js */,
+			);
+			name = newHelp;
 			sourceTree = "<group>";
 		};
 		035FBF4C166C5131007CDFB9 /* Reach */ = {
@@ -1021,6 +1030,7 @@
 		18D7902D166605C700E3CA10 /* HelpController */ = {
 			isa = PBXGroup;
 			children = (
+				033AB29016C219FA00854A1F /* newHelp */,
 				EEF5430716886F1E004B0E4D /* modle */,
 				E10AC57B168309CF0001CEC3 /* phone.png */,
 				E11ED49B168AA45300220824 /* ASHelpCenterCell.h */,
@@ -1049,6 +1059,9 @@
 				EE0A4C3716A6B50800B4652C /* ASAgreementController.xib */,
 				EEE36E8F16A7189C006BAF59 /* ShopRegister.html */,
 				EEE36E9216A71AFA006BAF59 /* ShopRegister.css */,
+				033AB28B16C2115400854A1F /* ASWebHelpViewController.h */,
+				033AB28C16C2115400854A1F /* ASWebHelpViewController.m */,
+				033AB28D16C2115400854A1F /* ASWebHelpViewController.xib */,
 			);
 			name = HelpController;
 			sourceTree = "<group>";
@@ -1093,12 +1106,7 @@
 		18D790351666065F00E3CA10 /* HelpImage */ = {
 			isa = PBXGroup;
 			children = (
-				18D790361666068800E3CA10 /* 9.jpg */,
 				18D790381666068800E3CA10 /* call.png */,
-				18D790391666068800E3CA10 /* 10.jpg */,
-				18D7903A1666068800E3CA10 /* 12.jpg */,
-				18D7903B1666068800E3CA10 /* 14.jpg */,
-				18D7903C1666068800E3CA10 /* 17.jpg */,
 			);
 			name = HelpImage;
 			sourceTree = "<group>";
@@ -1312,12 +1320,7 @@
 				18D790081665F9B600E3CA10 /* Default@2x.png in Resources */,
 				18D7900A1665F9B600E3CA10 /* Default-568h@2x.png in Resources */,
 				18D790241666035C00E3CA10 /* user.png in Resources */,
-				18D7903D1666068800E3CA10 /* 9.jpg in Resources */,
 				18D7903F1666068800E3CA10 /* call.png in Resources */,
-				18D790401666068800E3CA10 /* 10.jpg in Resources */,
-				18D790411666068800E3CA10 /* 12.jpg in Resources */,
-				18D790421666068800E3CA10 /* 14.jpg in Resources */,
-				18D790431666068800E3CA10 /* 17.jpg in Resources */,
 				18D79049166606A300E3CA10 /* Help.xib in Resources */,
 				18D7906D16660B1D00E3CA10 /* translate.png in Resources */,
 				18D7906F16660B1D00E3CA10 /* a11.gif in Resources */,
@@ -1471,6 +1474,8 @@
 				CEA8C1E416B678B600215B43 /* 垃圾桶.png in Resources */,
 				03797DF916BA27E0003E4663 /* Appgo.bundle in Resources */,
 				03797DFA16BA27E0003E4663 /* ShareSDKLocalizable.strings in Resources */,
+				033AB28F16C2115400854A1F /* ASWebHelpViewController.xib in Resources */,
+				033AB29516C21A0B00854A1F /* FristJqueryMobile.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1549,6 +1554,7 @@
 				03083B6816BBA21C00F2FBD4 /* SDWebImagePrefetcher.m in Sources */,
 				03083B6916BBA21C00F2FBD4 /* UIButton+WebCache.m in Sources */,
 				03083B6A16BBA21C00F2FBD4 /* UIImageView+WebCache.m in Sources */,
+				033AB28E16C2115400854A1F /* ASWebHelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

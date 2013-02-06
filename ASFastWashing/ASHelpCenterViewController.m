@@ -7,6 +7,7 @@
 //
 
 #import "ASHelpCenterViewController.h"
+#import "ASWebHelpViewController.h"
 #import "Reachability.h"
 #import "ASAgreementController.h"
 
@@ -289,7 +290,13 @@
 
 -(IBAction)helpButtonPressed:(id)sender
 {
-    Help * helpViewController = [[Help alloc] init];
+    //oldHelp
+//    Help * helpViewController = [[Help alloc] init];
+//    [self.navigationController pushViewController:helpViewController animated:YES];
+//    [helpViewController release];
+    
+    //newHelp
+    ASWebHelpViewController * helpViewController = [[ASWebHelpViewController alloc] init];
     [self.navigationController pushViewController:helpViewController animated:YES];
     [helpViewController release];
 }
