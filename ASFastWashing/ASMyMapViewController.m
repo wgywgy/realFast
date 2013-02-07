@@ -24,6 +24,20 @@
 
 @implementation ASMyMapViewController
 @synthesize point = _point,tmp,mySearchBar = _mySearchBar;
+- (void)dealloc
+{
+    [_point release];
+    [_mySearchBar release];
+    [_locManager release];
+    [myMapView release];
+    
+    [super dealloc];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [_locManager startUpdatingLocation];
+}
 
 - (void) startRequestwithRange:(int)range
 {
@@ -117,7 +131,6 @@
     [leftButton release];
     [leftBarButton release];
     
-    [self insertBar];
     
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(userInteractionEnabled)
@@ -159,10 +172,8 @@
     [self.view addSubview:myMapView];
     
 //    if ([_locManager respondsToSelector:@selector(startUpdatingLocation:)]) {
-        [_locManager startUpdatingLocation];
 //    }
     
-    [self insertBar];
     
     if(pinArray == nil) {
         //发送请求
@@ -317,20 +328,21 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.43];
     
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
                            forView:self.navigationController.view cache:YES];
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
     
-    //    _locManager = nil;
+//    _locManager = nil;
 //    self.view = nil;
 //    self.point = nil;
 //    [_locManager stopUpdatingLocation];
     if (Drop != nil) {
         [Drop removeFromSuperview];
-        Drop = nil;
+//        Drop = nil;
+        [Drop release];
     }
-
+    
     [self.navigationController popViewControllerAnimated:NO];
 }
 
@@ -427,6 +439,9 @@
 //        pinArray
 //    }
     [geocoder release];
+    
+    [self insertBar];
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -532,7 +547,6 @@
 //    [_locManager stopUpdatingLocation];
 //    _locManager = nil;
 //    myMapView = nil;
-    [self setMySearchBar:nil];
     
     [super viewDidDisappear:animated];
 }
@@ -586,6 +600,7 @@
         [myMapView.layer addAnimation:animation forKey:@"animation"];
         
         [myMapView removeAnnotation:pin];
+
     }
 }
 

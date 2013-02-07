@@ -7,7 +7,6 @@
 //
 
 #import "StoreList.h"
-#import "ASMyMapViewController.h"
 #import "URL.h"
 #import "ASStoreDetailInfo.h"
 #import "ASMyCell.h"
@@ -1011,16 +1010,13 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.43];
     
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
                            forView:self.navigationController.view cache:YES];
     [UIView setAnimationDelegate:self];
     [UIView commitAnimations];
     
-    ASMyMapViewController * mapViewCtrl = [[ASMyMapViewController alloc]init];
+    mapViewCtrl = [[[ASMyMapViewController alloc]init]autorelease];
     [self.navigationController pushViewController:mapViewCtrl animated:NO];
-    
-
-    [mapViewCtrl release];
 }
 
 //- (void)toTopPress

@@ -13,6 +13,7 @@
 #import "NSDictionary+DeepCopy.h"
 #import "ASRequest.h"
 #import "ASSwitch.h"
+#import "ASMyMapViewController.h"
 //#import "RRSGlowLabel.h"
 #import "EGORefreshTableFooterView.h"
 
@@ -92,6 +93,7 @@ typedef void (^RevealBlock4)();
 
     CGPoint beginOffset;
     CGFloat currentOffset;
+    ASMyMapViewController * mapViewCtrl;
 @private
     ASRequest * request;
 	RevealBlock4 _revealBlock;
