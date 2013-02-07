@@ -37,7 +37,7 @@
     if (self = [super initWithNibName:nil bundle:nil]) {
 		self.title = title;
 		_revealBlock = [revealBlock copy];
-        UIBarButtonItem * leftButton = 
+        UIBarButtonItem * leftButton =
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                       target:self
                                                       action:@selector(revealSidebar)];

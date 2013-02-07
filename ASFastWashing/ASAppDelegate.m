@@ -48,15 +48,18 @@
 	];
 	NSArray *isLoginControllers =
     @[
-    @[
-    [[UINavigationController alloc] initWithRootViewController:[[ASModifyPersonalInformationViewController alloc] initWithTitle:@"修改个人信息" withRevealBlock:revealBlock]]
-    ],
-    @[
-    [[UINavigationController alloc] initWithRootViewController:[[StoreList alloc] initWithTitle:@"今日天气" withRevealBlock:revealBlock]],
-    [[UINavigationController alloc] initWithRootViewController:[[Weather alloc] initWithTitle:@"洗衣店" withRevealBlock:revealBlock]],
-    [[UINavigationController alloc] initWithRootViewController:[[ASLogViewController alloc] initWithTitle:@"我的订单" withRevealBlock:revealBlock]],
-    [[UINavigationController alloc] initWithRootViewController:[[Favorites alloc] initWithTitle:@"收藏夹" withRevealBlock:revealBlock]],
-    [[UINavigationController alloc] initWithRootViewController:[[ASHelpCenterViewController alloc]initWithTitle:@"帮助中心" withRevealBlock:revealBlock]]]];
+      @[
+          [[UINavigationController alloc] initWithRootViewController:
+           [[ASModifyPersonalInformationViewController alloc] initWithTitle:@"修改个人信息" withRevealBlock:revealBlock]]
+          ],
+      @[
+          [[UINavigationController alloc] initWithRootViewController:[[StoreList alloc] initWithTitle:@"今日天气" withRevealBlock:revealBlock]],
+          [[UINavigationController alloc] initWithRootViewController:[[Weather alloc] initWithTitle:@"洗衣店" withRevealBlock:revealBlock]],
+          [[UINavigationController alloc] initWithRootViewController:[[ASLogViewController alloc] initWithTitle:@"我的订单" withRevealBlock:revealBlock]],
+          [[UINavigationController alloc] initWithRootViewController:[[Favorites alloc] initWithTitle:@"收藏夹" withRevealBlock:revealBlock]],
+          [[UINavigationController alloc] initWithRootViewController:[[ASHelpCenterViewController alloc]initWithTitle:@"帮助中心" withRevealBlock:revealBlock]]
+          ]
+      ];
     NSArray *isNotLoginControllers =
     @[
     @[
