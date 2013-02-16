@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class SelectCityViewController;
-@class DDCalendarView;
+
 typedef void (^RevealBlock2)();
 
 @interface Weather : UIViewController<UIScrollViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 { 
-    UIPageControl * myPageControl;               //Page Control
-    DDCalendarView * calendarView;               //日历视图
 @private
 	RevealBlock2 _revealBlock;
 }
@@ -40,6 +38,7 @@ typedef void (^RevealBlock2)();
 @property(nonatomic,retain)IBOutlet UIActivityIndicatorView *activityIndicator5;
 
 @property(nonatomic,retain)UIPickerView * selectCityPicker;  //选择城市用的picker
+@property(nonatomic,retain)UIView * myModelView;
 //未来三天天气用到的接口
 @property(nonatomic,retain)IBOutlet UILabel * temp3;
 @property(nonatomic,retain)IBOutlet UILabel * temp4;

@@ -29,6 +29,7 @@
 @synthesize myPageControl = _myPageControl;
 @synthesize weatherInfoData = _weatherInfoData;
 @synthesize selectCityPicker = _selectCityPicker;
+@synthesize myModelView = _myModelView;
 
 @synthesize temp3 = _temp3;
 @synthesize temp4 = _temp4;
@@ -83,6 +84,7 @@
     [_weatherInfoData release];
     [_selectCityField release];
     [_selectCityPicker release];
+    [_myModelView release];
     
     [_img3 release];
     [_img4 release];
@@ -447,6 +449,19 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    //view
+    CGRect rect = [[UIScreen mainScreen]bounds];
+    if (!_myModelView) {
+        _myModelView = [[UIView alloc]initWithFrame:rect];
+        
+        [_myModelView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.55]];
+    }
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+	if (!window)
+    {
+		window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+	}
+  	[window addSubview:_myModelView];
     
     //当指定的单元格需要编辑时，自定义pickerview键盘
     
@@ -485,6 +500,7 @@
 -(void)cancleSelectCity:(id)sender
 {
     [_selectCityField resignFirstResponder];
+    [_myModelView removeFromSuperview];
     _selectCityField.text = @"";
 }
 /*
@@ -493,7 +509,7 @@
 - (void)resignKeyboar:(id)sender
 {
     [_selectCityField resignFirstResponder];
-    
+    [_myModelView removeFromSuperview];
     NSString * cityId = [_cityList objectForKey:self.cityName];
     
     if (cityId == nil) {
