@@ -10,12 +10,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-#import "NSDictionary+DeepCopy.h"
+//#import "NSDictionary+DeepCopy.h"
 #import "ASRequest.h"
 #import "ASSwitch.h"
 #import "ASMyMapViewController.h"
 //#import "RRSGlowLabel.h"
-#import "EGORefreshTableFooterView.h"
+//#import "EGORefreshTableFooterView.h"
 
 typedef void (^RevealBlock4)();
 
@@ -25,12 +25,12 @@ typedef void (^RevealBlock4)();
                     UITableViewDataSource, UITableViewDelegate,
                     UIScrollViewDelegate,
                     ASRequestDelegate,
-                    EGORefreshTableFooterDelegate,
+//                    EGORefreshTableFooterDelegate,
                     CLLocationManagerDelegate,
                     MKMapViewDelegate,
                     UIGestureRecognizerDelegate>
 {
-    EGORefreshTableFooterView *_refreshHeaderView;
+//    EGORefreshTableFooterView *_refreshHeaderView;
     BOOL _reloading;
     NSInteger gradeListCount;
     NSInteger distanceListCount;
@@ -99,8 +99,8 @@ typedef void (^RevealBlock4)();
 	RevealBlock4 _revealBlock;
 }
 
-- (void)reloadTableViewDataSource;
-- (void)doneLoadingTableViewData;
+//- (void)reloadTableViewDataSource;
+//- (void)doneLoadingTableViewData;
 
 - (id)initWithTitle:(NSString *)title withRevealBlock:(RevealBlock4)revealBlock;
 @property (retain, nonatomic) IBOutlet UIView *myView;

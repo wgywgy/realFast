@@ -200,57 +200,59 @@
 
 - (void)insertBar
 {
-    Drop = [[DropDownList alloc]initWithFrame:CGRectMake(84, 8, 152, 32)];
-    Drop.delegate = self;
-    [myMapView addSubview:Drop];
-    [Drop release];
-    
-    //搜索按钮
-    search = [UIButton buttonWithType:UIButtonTypeCustom];
-    search.frame = CGRectMake(32, 8, 52, 32);
-    [search addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIImage * searchBg =
-    [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]
-                                      pathForResource:@"searchBack" ofType:@"png"]];
-    [search setBackgroundImage:searchBg forState:UIControlStateNormal];
-    
-    [myMapView addSubview:search];
-    
-    //定位按钮
-    locate = [UIButton buttonWithType:UIButtonTypeCustom];
-    locate.frame = CGRectMake(236, 8, 52, 32);
-    [locate addTarget:self action:@selector(locate:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIImage * locateBg =
-    [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]
-                                      pathForResource:@"locateBack" ofType:@"png"]];
-    [locate setBackgroundImage:locateBg forState:UIControlStateNormal];
-    [myMapView addSubview:locate];
-    
-    mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(26, 8, 268, 34)];
-    mySearchBar.placeholder = @"请输入洗衣店名";
-//    mySearchBar.layer.shadowOffset = CGSizeMake(0, 2);
-//    mySearchBar.layer.shadowOpacity = 0.62;
-//    mySearchBar.layer.shadowRadius = 8;
-    mySearchBar.delegate = self;
-    mySearchBar.showsCancelButton = YES;
-    mySearchBar.delegate = self;
-    
-    for(UIButton * aView in [mySearchBar subviews]){
-        if([aView isKindOfClass:[UIButton class]]){
-            UIButton *btn = (UIButton *)aView;
-            [btn setTitle:@"取消"  forState:UIControlStateNormal];
-            
-            break;
+    if (Drop == nil) {
+        Drop = [[DropDownList alloc]initWithFrame:CGRectMake(84, 8, 152, 32)];
+        Drop.delegate = self;
+        [myMapView addSubview:Drop];
+        [Drop release];
+        
+        //搜索按钮
+        search = [UIButton buttonWithType:UIButtonTypeCustom];
+        search.frame = CGRectMake(32, 8, 52, 32);
+        [search addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIImage * searchBg =
+        [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]
+                                          pathForResource:@"searchBack" ofType:@"png"]];
+        [search setBackgroundImage:searchBg forState:UIControlStateNormal];
+        
+        [myMapView addSubview:search];
+        
+        //定位按钮
+        locate = [UIButton buttonWithType:UIButtonTypeCustom];
+        locate.frame = CGRectMake(236, 8, 52, 32);
+        [locate addTarget:self action:@selector(locate:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIImage * locateBg =
+        [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]
+                                          pathForResource:@"locateBack" ofType:@"png"]];
+        [locate setBackgroundImage:locateBg forState:UIControlStateNormal];
+        [myMapView addSubview:locate];
+        
+        mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(26, 8, 268, 34)];
+        mySearchBar.placeholder = @"请输入洗衣店名";
+        //    mySearchBar.layer.shadowOffset = CGSizeMake(0, 2);
+        //    mySearchBar.layer.shadowOpacity = 0.62;
+        //    mySearchBar.layer.shadowRadius = 8;
+        mySearchBar.delegate = self;
+        mySearchBar.showsCancelButton = YES;
+        mySearchBar.delegate = self;
+        
+        for(UIButton * aView in [mySearchBar subviews]){
+            if([aView isKindOfClass:[UIButton class]]){
+                UIButton *btn = (UIButton *)aView;
+                [btn setTitle:@"取消"  forState:UIControlStateNormal];
+                
+                break;
+            }
         }
+        
+        [[mySearchBar.subviews objectAtIndex:0]removeFromSuperview];
+        mySearchBar.backgroundColor = [UIColor clearColor];
+        [myMapView addSubview:mySearchBar];
+        [mySearchBar release];
+        mySearchBar.hidden = YES;
     }
-    
-    [[mySearchBar.subviews objectAtIndex:0]removeFromSuperview];
-    mySearchBar.backgroundColor = [UIColor clearColor];
-    [myMapView addSubview:mySearchBar];
-    [mySearchBar release];
-    mySearchBar.hidden = YES;
 }
 
 - (IBAction)search:(id)sender
@@ -439,9 +441,8 @@
 //        pinArray
 //    }
     [geocoder release];
-    
     [self insertBar];
-
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

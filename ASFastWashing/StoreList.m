@@ -41,7 +41,6 @@
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                       target:self
                                                       action:@selector(revealSidebar)];
-
 		self.navigationItem.leftBarButtonItem = leftButton;
         [leftButton release];
 	}
@@ -76,7 +75,7 @@
     [_mySearchBar release];
     [_myTableView release];
     [_myView release];
-    _refreshHeaderView = nil;
+//    _refreshHeaderView = nil;
     
     [super dealloc];
 }
@@ -101,30 +100,30 @@
     [self startRequestwithType:listType];
 }
 
-- (void)doneLoadingTableViewData{
+//- (void)doneLoadingTableViewData{
 	//  model should call this when its done loading
-	_reloading = NO;
-	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.myTableView];
+//	_reloading = NO;
+//	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.myTableView];
 
-    [_refreshHeaderView removeFromSuperview];
-    _refreshHeaderView = nil;
-    rect_screen = [[UIScreen mainScreen]bounds];
-    if (_refreshHeaderView == nil) {
-        EGORefreshTableFooterView *view = nil;
-		if (rect_screen.size.height <= 480) {
-            NSLog(@"%f",self.myTableView.contentSize.height);
-            view = [[EGORefreshTableFooterView alloc]
-                    initWithFrame:CGRectMake(0, self.myTableView.contentSize.height,320, 480)];
-        } else {
-            view = [[EGORefreshTableFooterView alloc]
-                    initWithFrame:CGRectMake(0, self.myTableView.contentSize.height,320, 480)];
-        }
-        view.delegate = self;
-        [self.myTableView addSubview:view];
-        _refreshHeaderView = view;
-        [view release];
-	}
-}
+//    [_refreshHeaderView removeFromSuperview];
+//    _refreshHeaderView = nil;
+//    rect_screen = [[UIScreen mainScreen]bounds];
+//    if (_refreshHeaderView == nil) {
+//        EGORefreshTableFooterView *view = nil;
+//		if (rect_screen.size.height <= 480) {
+//            NSLog(@"%f",self.myTableView.contentSize.height);
+//            view = [[EGORefreshTableFooterView alloc]
+//                    initWithFrame:CGRectMake(0, self.myTableView.contentSize.height,320, 480)];
+//        } else {
+//            view = [[EGORefreshTableFooterView alloc]
+//                    initWithFrame:CGRectMake(0, self.myTableView.contentSize.height,320, 480)];
+//        }
+//        view.delegate = self;
+//        [self.myTableView addSubview:view];
+//        _refreshHeaderView = view;
+//        [view release];
+//	}
+//}
 
 
 #pragma mark -
@@ -136,176 +135,28 @@
 
 //}
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-	
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-    //显示被隐藏的搜索栏
-    if (isSearchView) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        [UIView beginAnimations:nil context:context];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:2.618f];
-        [self.mySearchBar setAlpha:1.0f];
-        [UIView commitAnimations];
-        [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height -20)];
-//        [self.myTableView setContentOffset:CGPointMake(0, 0) animated:NO];
-    }
-    if ((_storeCollect.count >= 5 || _storeGrade.count >= 5 || _storeDistance.count >= 5)) {
-        //        && scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= 388) {
-        //            if (scrollView.contentOffset.y > tmpY)
-        if (-currentOffset >= 4)
-        {
-            navIsHidden = YES;
-            //搜索
-            if (isSearchView == YES) {
-                [self.mySearchBar resignFirstResponder];
-                
-                for (UIView *possibleButton in self.mySearchBar.subviews)
-                {
-                    if ([possibleButton isKindOfClass:[UIButton class]])
-                    {
-                        UIButton *cancelButton = (UIButton*)possibleButton;
-                        cancelButton.enabled = YES;
-                        break;
-                    }
-                }
-                
-                left.hidden = YES;
-                mid.hidden = YES;
-                right.hidden = YES;
-                mySearchBtn.hidden = YES;
-                
-//                [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height - 20)];
-                
-            } else {
-                //隐藏导航栏
-                self.wantsFullScreenLayout = YES;
-//                [self.navigationController setNavigationBarHidden:YES animated:YES];
-                [self setMynavigationBarHide:YES];
-                
-                left.transform = CGAffineTransformIdentity;
-                [UIView beginAnimations:@"leftHide"context:left];
-                [UIView setAnimationDelegate:self];
-                left.frame = CGRectMake(0, -44, 68, 36);
-                [UIView commitAnimations];
-                
-                mid.transform = CGAffineTransformIdentity;
-                [UIView beginAnimations:@"midHide"context:left];
-                [UIView setAnimationDelegate:self];
-                mid.frame = CGRectMake(68, -44, 68, 36);
-                [UIView commitAnimations];
-                
-                right.transform = CGAffineTransformIdentity;
-                [UIView beginAnimations:@"rightHide"context:left];
-                [UIView setAnimationDelegate:self];
-                right.frame = CGRectMake(136, -44, 68, 36);
-                [UIView commitAnimations];
-                
-                mySearchBar.transform = CGAffineTransformIdentity;
-                [UIView beginAnimations:@"rightHide"context:left];
-                [UIView setAnimationDelegate:self];
-                mySearchBtn.frame = CGRectMake(204, -44, 116, 36);
-                [UIView commitAnimations];
-                
-                //                   left.hidden = YES;
-                //                    mid.hidden = YES;
-                //                    right.hidden = YES;
-                //                    mySearchBtn.hidden = YES;
-                
-                [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height)];
-            }
-            //                toTop.hidden = NO;
-        } else {
-            navIsHidden = NO;
-            
-            if (isSearchView == YES) {
-                //搜索
-                //                [self.mySearchBar resignFirstResponder];
-                
-                //                self.mySearchBar.hidden = YES;
-                
-                self.wantsFullScreenLayout = YES;
-                left.hidden = YES;
-                mid.hidden = YES;
-                right.hidden = YES;
-                mySearchBtn.hidden = YES;
-                
-//                [self.myTableView setFrame:CGRectMake(0, 44, 320, rect_screen.size.height - 44 - 20)];
-                
-            } else {
-//                [self.navigationController setNavigationBarHidden:NO animated:YES];
-                [self setMynavigationBarHide:NO];
-                
-                left.transform = CGAffineTransformIdentity;
-                [UIView beginAnimations:@"leftShow"context:left];
-                [UIView setAnimationDelegate:self];
-                left.frame = CGRectMake(0, 0, 68, 36);
-                [UIView commitAnimations];
-                
-                mid.transform = CGAffineTransformIdentity;
-                [UIView beginAnimations:@"midShow"context:left];
-                [UIView setAnimationDelegate:self];
-                mid.frame = CGRectMake(68, 0, 68, 36);
-                [UIView commitAnimations];
-                
-                left.transform = CGAffineTransformIdentity;
-                [UIView beginAnimations:@"rightShow"context:left];
-                [UIView setAnimationDelegate:self];
-                right.frame = CGRectMake(136, 0, 68, 36);
-                [UIView commitAnimations];
-                
-                mySearchBar.transform = CGAffineTransformIdentity;
-                [UIView beginAnimations:@"rightHide"context:left];
-                [UIView setAnimationDelegate:self];
-                mySearchBtn.frame = CGRectMake(204, 0, 116, 36);
-                [UIView commitAnimations];
-                
-                
-                left.hidden = NO;
-                mid.hidden = NO;
-                right.hidden = NO;
-                mySearchBtn.hidden = NO;
-                
-                [self.myTableView setFrame:CGRectMake(0, 36, 320, rect_screen.size.height - 36 - 44)];
-            }
-        }
-    }
-}
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    if (isSearchView) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        [UIView beginAnimations:nil context:context];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationDuration:2.6918f];
-        [self.mySearchBar setAlpha:1.0f];
-        [UIView commitAnimations];
-//        [self.myTableView setContentOffset:CGPointMake(0, 0) animated:NO];
-        [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height -20)];
-    }
-}
 
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableFooterView*)view{
-	
-	[self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.6];
-	
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableFooterView*)view{
-	
-	return _reloading; // should return if data source model is reloading
-	
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableFooterView*)view{
-	
-	return [NSDate date]; // should return date data source was last changed
-	
-}
+//- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableFooterView*)view{
+//	
+//	[self reloadTableViewDataSource];
+//	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.6];
+//	
+//}
+//
+//- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableFooterView*)view{
+//	
+//	return _reloading; // should return if data source model is reloading
+//	
+//}
+//
+//- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableFooterView*)view{
+//	
+//	return [NSDate date]; // should return date data source was last changed
+//	
+//}
 
 
 #pragma mark -- tableViewDelegate
@@ -450,10 +301,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (isSearchView == YES && mySearchTerm == @"")
-//        return (rect_screen.size.height - 100) / 8;
-//    else
-        return (rect_screen.size.height - 100) / 5;
+//        return (rect_screen.size.height - 100) / 5;
+    return 120;
 }
 
 //距离排序
@@ -662,22 +511,22 @@
     [super viewDidLoad];
 
     rect_screen = [[UIScreen mainScreen]bounds];
-    if (_refreshHeaderView == nil) {
-        EGORefreshTableFooterView *view = nil;
-//        NSLog(@"height:%f",self.myTableView.bounds.size.height);
-//        NSLog(@"rect:%f",rect_screen.size.height);
-		if (rect_screen.size.height <= 480) {
-            view = [[EGORefreshTableFooterView alloc]
-                    initWithFrame:CGRectMake(0, 533,320, 480)];
-        } else {
-            view = [[EGORefreshTableFooterView alloc]
-                    initWithFrame:CGRectMake(0, 654,320, 560)];
-        }
-        view.delegate = self;
-        [self.myTableView addSubview:view];
-        _refreshHeaderView = view;
-        [view release];
-	}
+//    if (_refreshHeaderView == nil) {
+//        EGORefreshTableFooterView *view = nil;
+////        NSLog(@"height:%f",self.myTableView.bounds.size.height);
+////        NSLog(@"rect:%f",rect_screen.size.height);
+//		if (rect_screen.size.height <= 480) {
+//            view = [[EGORefreshTableFooterView alloc]
+//                    initWithFrame:CGRectMake(0, 533,320, 480)];
+//        } else {
+//            view = [[EGORefreshTableFooterView alloc]
+//                    initWithFrame:CGRectMake(0, 654,320, 560)];
+//        }
+//        view.delegate = self;
+//        [self.myTableView addSubview:view];
+//        _refreshHeaderView = view;
+//        [view release];
+//	}
     
     self.navigationController.navigationBarHidden = NO;
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -745,6 +594,7 @@
     searchBgView.frame = CGRectMake(8, 4, 108, 27);
     
     [self insertSortBar];
+    
     
     //show ads
 //    NSString * imgUrl = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"jpg"];
@@ -938,7 +788,6 @@
     
     //放大镜图片
     [mySearchBtn addSubview:glassView];
-//    [glass release];
     [self.view addSubview:mySearchBtn];
 }
 
@@ -996,6 +845,7 @@
     [request startConnectInternet];
 }
 
+
 //点击加入我们
 - (void)joinClick
 {
@@ -1018,15 +868,6 @@
     mapViewCtrl = [[[ASMyMapViewController alloc]init]autorelease];
     [self.navigationController pushViewController:mapViewCtrl animated:NO];
 }
-
-//- (void)toTopPress
-//{
-//    if (isSearchView) {
-//        [self.myTableView setContentOffset:CGPointMake(0, 0) animated:YES];
-//    } else {
-//        [self.myTableView setContentOffset:CGPointMake(0, 0) animated:NO];
-//    }
-//}
 
 - (void)timerMethod
 {
@@ -1302,15 +1143,13 @@
 //滑动检测
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 {
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+//    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     
     CGFloat dy = beginOffset.y - scrollView.contentOffset.y;
  
     currentOffset = dy;
-    NSLog(@"current:%f",currentOffset);
+    NSLog(@"current: %f %f %f", currentOffset, beginOffset.y ,scrollView.contentOffset.y);
     if (isSearchView && currentOffset >= 44) {
-        //        NSLog(@"bin");
-        //        NSLog(@"hei:%f",scrollView.contentOffset.y);
         CGContextRef context = UIGraphicsGetCurrentContext();
         [UIView beginAnimations:nil context:context];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -1320,15 +1159,16 @@
         [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height -20)];
 //        [self.myTableView setContentOffset:CGPointMake(0, 44) animated:NO];
     }
-    if (scrollView.contentOffset.y > 0) {
-    if (isSearchView == NO && (_storeCollect.count >= 5 || _storeGrade.count >= 5 || _storeDistance.count >= 5) ) {
-        //        && scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= 388) {
-        //            if (scrollView.contentOffset.y > tmpY)
-//            navIsHidden = YES;
+//    if (scrollView.contentOffset.y > 0) {
+    if (currentOffset < -5) {
+        if (isSearchView == NO && (_storeCollect.count >= 5 || _storeGrade.count >= 5 || _storeDistance.count >= 5) ) {
+            //        && scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= 388) {
+            //            if (scrollView.contentOffset.y > tmpY)
+            //            navIsHidden = YES;
             //搜索
             //隐藏导航栏
-//            self.wantsFullScreenLayout = YES;
-//        left.transform = CGAffineTransformIdentity;
+            //            self.wantsFullScreenLayout = YES;
+            //        left.transform = CGAffineTransformIdentity;
             [UIView beginAnimations:@"leftHide"context:left];
             [UIView setAnimationDelegate:self];
             self.navigationController.navigationBar.frame = CGRectMake(0, currentOffset +20, 320, 44);
@@ -1358,14 +1198,155 @@
             mySearchBtn.frame = CGRectMake(204, currentOffset, 116, 36);
             [UIView commitAnimations];
             
-            [self.myTableView setFrame:CGRectMake(0, currentOffset, 320, rect_screen.size.height)];
-//             left.hidden = NO;
-//            mid.hidden = NO;
-//            right.hidden = NO;
-//            mySearchBtn.hidden = NO;
-//            
-//            [self.myTableView setFrame:CGRectMake(0, 36, 320, rect_screen.size.height - 36 - 44)];
+//            [self.myTableView setFrame:CGRectMake(0, currentOffset, 320, rect_screen.size.height - currentOffset)];
+        }
     }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+	
+    //	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+    //显示被隐藏的搜索栏
+    if (isSearchView) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [UIView beginAnimations:nil context:context];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:2.618f];
+        [self.mySearchBar setAlpha:1.0f];
+        [UIView commitAnimations];
+        [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height -20)];
+        //        [self.myTableView setContentOffset:CGPointMake(0, 0) animated:NO];
+    }
+    if ((_storeCollect.count >= 5 || _storeGrade.count >= 5 || _storeDistance.count >= 5)) {
+        //        && scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= 388) {
+        if (-currentOffset >= 4)
+        {
+            navIsHidden = YES;
+            //搜索
+            if (isSearchView == YES) {
+                [self.mySearchBar resignFirstResponder];
+                
+                for (UIView *possibleButton in self.mySearchBar.subviews)
+                {
+                    if ([possibleButton isKindOfClass:[UIButton class]])
+                    {
+                        UIButton *cancelButton = (UIButton*)possibleButton;
+                        cancelButton.enabled = YES;
+                        break;
+                    }
+                }
+                
+                left.hidden = YES;
+                mid.hidden = YES;
+                right.hidden = YES;
+                mySearchBtn.hidden = YES;
+                
+                //                [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height - 20)];
+                
+            } else {
+                //隐藏导航栏
+                self.wantsFullScreenLayout = YES;
+                //                [self.navigationController setNavigationBarHidden:YES animated:YES];
+                [self setMynavigationBarHide:YES];
+                
+                left.transform = CGAffineTransformIdentity;
+                [UIView beginAnimations:@"leftHide"context:left];
+                [UIView setAnimationDelegate:self];
+                left.frame = CGRectMake(0, -44, 68, 36);
+                [UIView commitAnimations];
+                
+                mid.transform = CGAffineTransformIdentity;
+                [UIView beginAnimations:@"midHide"context:left];
+                [UIView setAnimationDelegate:self];
+                mid.frame = CGRectMake(68, -44, 68, 36);
+                [UIView commitAnimations];
+                
+                right.transform = CGAffineTransformIdentity;
+                [UIView beginAnimations:@"rightHide"context:left];
+                [UIView setAnimationDelegate:self];
+                right.frame = CGRectMake(136, -44, 68, 36);
+                [UIView commitAnimations];
+                
+                mySearchBar.transform = CGAffineTransformIdentity;
+                [UIView beginAnimations:@"rightHide"context:left];
+                [UIView setAnimationDelegate:self];
+                mySearchBtn.frame = CGRectMake(204, -44, 116, 36);
+                [UIView commitAnimations];
+                
+                //                   left.hidden = YES;
+                //                    mid.hidden = YES;
+                //                    right.hidden = YES;
+                //                    mySearchBtn.hidden = YES;
+                
+                [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height)];
+            }
+        } else {
+            navIsHidden = NO;
+            
+            if (isSearchView == YES) {
+                //搜索
+                //                [self.mySearchBar resignFirstResponder];
+                
+                //                self.mySearchBar.hidden = YES;
+                
+                self.wantsFullScreenLayout = YES;
+                left.hidden = YES;
+                mid.hidden = YES;
+                right.hidden = YES;
+                mySearchBtn.hidden = YES;
+                
+                //                [self.myTableView setFrame:CGRectMake(0, 44, 320, rect_screen.size.height - 44 - 20)];
+                
+            } else {
+                //                [self.navigationController setNavigationBarHidden:NO animated:YES];
+                [self setMynavigationBarHide:NO];
+                
+                left.transform = CGAffineTransformIdentity;
+                [UIView beginAnimations:@"leftShow"context:left];
+                [UIView setAnimationDelegate:self];
+                left.frame = CGRectMake(0, 0, 68, 36);
+                [UIView commitAnimations];
+                
+                mid.transform = CGAffineTransformIdentity;
+                [UIView beginAnimations:@"midShow"context:left];
+                [UIView setAnimationDelegate:self];
+                mid.frame = CGRectMake(68, 0, 68, 36);
+                [UIView commitAnimations];
+                
+                left.transform = CGAffineTransformIdentity;
+                [UIView beginAnimations:@"rightShow"context:left];
+                [UIView setAnimationDelegate:self];
+                right.frame = CGRectMake(136, 0, 68, 36);
+                [UIView commitAnimations];
+                
+                mySearchBar.transform = CGAffineTransformIdentity;
+                [UIView beginAnimations:@"rightHide"context:left];
+                [UIView setAnimationDelegate:self];
+                mySearchBtn.frame = CGRectMake(204, 0, 116, 36);
+                [UIView commitAnimations];
+                
+                left.hidden = NO;
+                mid.hidden = NO;
+                right.hidden = NO;
+                mySearchBtn.hidden = NO;
+                
+                [self.myTableView setFrame:CGRectMake(0, 36, 320, rect_screen.size.height - 36 - 44)];
+            }
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (isSearchView) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [UIView beginAnimations:nil context:context];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:2.6918f];
+        [self.mySearchBar setAlpha:1.0f];
+        [UIView commitAnimations];
+        //        [self.myTableView setContentOffset:CGPointMake(0, 0) animated:NO];
+        [self.myTableView setFrame:CGRectMake(0, 0, 320, rect_screen.size.height -20)];
     }
 }
 

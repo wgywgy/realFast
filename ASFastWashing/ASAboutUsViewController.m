@@ -40,7 +40,7 @@
     left.titleLabel.font = [UIFont systemFontOfSize: 13.0];
     [left setBackgroundImage:[[UIImage imageNamed:@"button背景.png"]resizableImageWithCapInsets:UIEdgeInsetsMake(9,9,18,9)]  forState:UIControlStateNormal];
     [left addTarget:self action:@selector(returnHelpCenter:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithCustomView:left];
     self.navigationItem.leftBarButtonItem = leftButton;
     [leftButton release];
